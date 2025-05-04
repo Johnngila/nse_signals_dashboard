@@ -204,12 +204,12 @@ def fetch_nse_data(tickers=None, period="1mo"):
         return pd.DataFrame()
 
 def fetch_nse_current_prices(tickers):
-    """Fetch current stock prices from TradingView for Kenyan stocks"""
+    """Fetch current stock prices from MyStocks Kenya website"""
     current_data = {}
     
     try:
-        # TradingView Kenya stocks URL
-        url = "https://www.tradingview.com/markets/stocks-kenya/market-movers-most-expensive/"
+        # MyStocks Kenya URL
+        url = "https://live.mystocks.co.ke/"
         
         # Send request with headers to mimic a browser
         headers = {
@@ -221,7 +221,7 @@ def fetch_nse_current_prices(tickers):
             'Cache-Control': 'max-age=0'
         }
         
-        print(f"Attempting to fetch stock prices from TradingView...")
+        print(f"Attempting to fetch stock prices from MyStocks Kenya...")
         response = requests.get(url, headers=headers, timeout=20)
         response.raise_for_status()
         
@@ -229,103 +229,227 @@ def fetch_nse_current_prices(tickers):
         soup = BeautifulSoup(response.text, 'lxml')
         
         # Save the HTML for debugging
-        debug_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'tradingview_debug.txt')
+        debug_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'mystocks_debug.txt')
         with open(debug_file, 'w', encoding='utf-8') as f:
             f.write(response.text)
-        print(f"Saved TradingView HTML for debugging to {debug_file}")
+        print(f"Saved MyStocks HTML for debugging to {debug_file}")
         
-        # In TradingView, each stock is in a table row
-        # Find all stock rows in the table
-        stock_rows = soup.select('tr[data-rowkey]')
-        print(f"Found {len(stock_rows)} stock rows on TradingView")
-        
+        # The MyStocks website has a section with corporate actions showing stock symbols
+        # We'll extract stocks from these sections and try to match with our tickers
         today = datetime.now().strftime('%Y-%m-%d')
         
-        for row in stock_rows:
+        # Look for stock symbols in the corporate actions section
+        stock_elements = soup.select(".corporate_actions a")
+        
+        for element in stock_elements:
             try:
-                # Get the ticker symbol - it's usually in a cell with the stock name
-                symbol_cells = row.select('td:first-child span')
-                if not symbol_cells:
-                    continue
+                # Extract ticker from the element
+                ticker = element.text.strip()
                 
-                # The ticker is typically in the first span element
-                ticker = symbol_cells[0].text.strip()
-                
-                # Check if this ticker is in our list (case insensitive comparison)
+                # Check if this ticker is in our list (case insensitive)
                 if ticker.upper() in [t.upper() for t in tickers]:
-                    # Get the price - typically in the second or third column
-                    price_cells = row.select('td:nth-child(2)')
-                    if not price_cells:
-                        price_cells = row.select('td:nth-child(3)')
+                    # Now we need to find the price for this ticker
+                    # This is more challenging as it requires navigating to the stock's detail page
+                    # For now, we'll try to extract price information from the main page
                     
-                    if not price_cells:
-                        continue
-                    
-                    # Extract the price text
-                    price_text = price_cells[0].text.strip()
-                    
-                    # Clean up and convert to float
-                    # TradingView format is typically like "411.00KES"
-                    price_text = price_text.replace('KES', '').replace(',', '').strip()
-                    
-                    if not price_text or price_text in ["-", "N/A"]:
-                        continue
-                        
-                    price = float(price_text)
-                    
-                    # Store the price
-                    if ticker not in current_data:
-                        current_data[ticker] = {}
-                    
-                    current_data[ticker][today] = price
-                    print(f"Found price for {ticker}: {price}")
+                    # Check if there's a parent element with price information
+                    parent_element = element.parent.parent
+                    if parent_element:
+                        price_text = parent_element.text.strip()
+                        # Try to extract price using pattern matching
+                        # Look for patterns like "KES X.XX" or similar
+                        if "KES" in price_text:
+                            # Extract the price - this is a simplified approach
+                            try:
+                                # Split by KES and take the next part
+                                parts = price_text.split("KES")
+                                if len(parts) > 1:
+                                    # Take the part after KES and clean it
+                                    price_part = parts[1].strip()
+                                    # Extract numeric value (assuming it's at the beginning)
+                                    price_value = ""
+                                    for char in price_part:
+                                        if char.isdigit() or char == ".":
+                                            price_value += char
+                                        else:
+                                            break
+                                    
+                                    if price_value:
+                                        price = float(price_value)
+                                        
+                                        # Store the price
+                                        if ticker not in current_data:
+                                            current_data[ticker] = {}
+                                        
+                                        current_data[ticker][today] = price
+                                        print(f"Found price for {ticker}: {price}")
+                            except Exception as e:
+                                print(f"Error extracting price for {ticker}: {e}")
+            
             except Exception as e:
-                print(f"Error processing row for ticker: {e}")
+                print(f"Error processing stock element: {e}")
                 continue
         
-        # If we didn't find any data, try a different approach
-        if not current_data:
-            print("No data found using primary method, trying backup approach...")
+        # If we didn't get many tickers, try a different approach
+        if len(current_data) < len(tickers) * 0.5:  # If we got less than half the tickers
+            print("Few tickers found with first method, trying alternative approach...")
             
-            # Try finding prices in a different format
-            price_elements = soup.select('div[data-field="price"]')
+            # Try to find all potential ticker symbols on the page
+            potential_tickers = soup.select("a[href^='/stock/']")
             
-            for element in price_elements:
+            for element in potential_tickers:
                 try:
-                    # Find the associated symbol
-                    symbol_elements = element.parent.parent.select('div[data-field="symbol"]')
-                    if not symbol_elements:
-                        continue
-                    
-                    ticker = symbol_elements[0].text.strip()
-                    
-                    # Check if this ticker is in our list
-                    if ticker.upper() in [t.upper() for t in tickers]:
-                        # Extract the price
-                        price_text = element.text.strip()
-                        price_text = price_text.replace('KES', '').replace(',', '').strip()
+                    # Extract ticker from href
+                    href = element.get('href', '')
+                    if href.startswith('/stock/'):
+                        ticker = href.split('/stock/')[1].strip()
                         
-                        if not price_text or price_text in ["-", "N/A"]:
-                            continue
+                        # Check if this ticker is in our list
+                        if ticker.upper() in [t.upper() for t in tickers] and ticker not in current_data:
+                            # Found a ticker, now try to fetch its price
+                            # We'll need to make another request to the stock's detail page
+                            stock_url = f"https://live.mystocks.co.ke/stock/{ticker}"
                             
-                        price = float(price_text)
-                        
-                        # Store the price
-                        if ticker not in current_data:
-                            current_data[ticker] = {}
-                        
-                        current_data[ticker][today] = price
-                        print(f"Found price for {ticker}: {price}")
+                            try:
+                                stock_response = requests.get(stock_url, headers=headers, timeout=10)
+                                stock_response.raise_for_status()
+                                
+                                stock_soup = BeautifulSoup(stock_response.text, 'lxml')
+                                
+                                # Look for the price in the stock detail page
+                                # The exact structure might vary, so we'll look for common patterns
+                                price_elements = stock_soup.select(".price, .stock-price, .current-price")
+                                
+                                if price_elements:
+                                    price_text = price_elements[0].text.strip()
+                                    # Clean up the price text
+                                    price_text = price_text.replace('KES', '').replace(',', '').strip()
+                                    
+                                    if price_text and price_text not in ["-", "N/A"]:
+                                        price = float(price_text)
+                                        
+                                        # Store the price
+                                        if ticker not in current_data:
+                                            current_data[ticker] = {}
+                                        
+                                        current_data[ticker][today] = price
+                                        print(f"Found price for {ticker} (method 2): {price}")
+                            except Exception as e:
+                                print(f"Error fetching detail page for {ticker}: {e}")
                 except Exception as e:
-                    print(f"Error processing element for ticker: {e}")
+                    print(f"Error processing ticker link: {e}")
                     continue
         
-        # If we still have no data
-        if not current_data:
-            print("No data found in TradingView page")
+        # If we still don't have enough data, try a third approach using the entire page text
+        if len(current_data) < len(tickers) * 0.7:  # If we still haven't found most tickers
+            print("Still missing tickers, trying text search approach...")
             
-            # Fallback to Yahoo Finance for current prices
+            page_text = soup.text
+            
             for ticker in tickers:
+                # Skip tickers we already found
+                if ticker in current_data:
+                    continue
+                
+                # Search for the ticker in the page text
+                ticker_pos = page_text.find(ticker)
+                if ticker_pos != -1:
+                    # Found the ticker, now try to find a nearby price
+                    # Look for "KES" near the ticker (within 100 characters)
+                    surrounding_text = page_text[max(0, ticker_pos - 50):min(len(page_text), ticker_pos + 150)]
+                    
+                    if "KES" in surrounding_text:
+                        try:
+                            # Extract price using the same pattern matching as before
+                            parts = surrounding_text.split("KES")
+                            if len(parts) > 1:
+                                price_part = parts[1].strip()
+                                price_value = ""
+                                for char in price_part:
+                                    if char.isdigit() or char == ".":
+                                        price_value += char
+                                    else:
+                                        break
+                                
+                                if price_value:
+                                    price = float(price_value)
+                                    
+                                    # Store the price
+                                    if ticker not in current_data:
+                                        current_data[ticker] = {}
+                                    
+                                    current_data[ticker][today] = price
+                                    print(f"Found price for {ticker} (method 3): {price}")
+                        except Exception as e:
+                            print(f"Error extracting price for {ticker} from text: {e}")
+        
+        # If we still don't have enough data, try a fourth approach using a secondary page
+        if len(current_data) < len(tickers):
+            print("Still missing tickers, trying market data page...")
+            
+            # Try the quotes page which might have more structured data
+            quotes_url = "https://live.mystocks.co.ke/quotes"
+            
+            try:
+                quotes_response = requests.get(quotes_url, headers=headers, timeout=15)
+                quotes_response.raise_for_status()
+                
+                quotes_soup = BeautifulSoup(quotes_response.text, 'lxml')
+                
+                # Look for a table with stock quotes
+                quote_tables = quotes_soup.select("table")
+                
+                for table in quote_tables:
+                    rows = table.select("tr")
+                    
+                    for row in rows:
+                        try:
+                            cells = row.select("td")
+                            if len(cells) >= 2:  # Need at least ticker and price
+                                ticker_cell = cells[0].text.strip()
+                                
+                                # Check if this is one of our tickers
+                                ticker = ticker_cell.split()[0] if ticker_cell else ""  # Take first word as ticker
+                                
+                                if ticker and ticker.upper() in [t.upper() for t in tickers] and ticker not in current_data:
+                                    # Look for price in subsequent cells
+                                    for cell in cells[1:]:
+                                        cell_text = cell.text.strip()
+                                        
+                                        # Try to parse as a number
+                                        if cell_text:
+                                            try:
+                                                # Clean up and convert to float
+                                                price_text = cell_text.replace('KES', '').replace(',', '').strip()
+                                                
+                                                # Validate that this looks like a price
+                                                if price_text and price_text not in ["-", "N/A"] and any(c.isdigit() for c in price_text):
+                                                    price = float(price_text)
+                                                    
+                                                    # Check if price is reasonable (not too high or low)
+                                                    if 0.1 <= price <= 10000:  # Reasonable range for KES
+                                                        # Store the price
+                                                        if ticker not in current_data:
+                                                            current_data[ticker] = {}
+                                                        
+                                                        current_data[ticker][today] = price
+                                                        print(f"Found price for {ticker} (method 4): {price}")
+                                                        break  # Found price, move to next row
+                                            except Exception as e:
+                                                # Not a valid price, try next cell
+                                                continue
+                        except Exception as e:
+                            print(f"Error processing quote row: {e}")
+                            continue
+            except Exception as e:
+                print(f"Error fetching quotes page: {e}")
+        
+        # If we still don't have data for all tickers, try Yahoo Finance as a fallback
+        missing_tickers = [t for t in tickers if t not in current_data]
+        if missing_tickers:
+            print(f"Missing prices for {len(missing_tickers)} tickers, trying Yahoo Finance fallback...")
+            
+            for ticker in missing_tickers:
                 try:
                     yahoo_ticker = f"{ticker}.NR"
                     stock = yf.Ticker(yahoo_ticker)
@@ -347,7 +471,7 @@ def fetch_nse_current_prices(tickers):
         return current_data
         
     except Exception as e:
-        print(f"Error fetching TradingView prices: {e}")
+        print(f"Error fetching MyStocks Kenya prices: {e}")
         import traceback
         traceback.print_exc()
         return {}
