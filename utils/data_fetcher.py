@@ -204,18 +204,12 @@ def fetch_nse_data(tickers=None, period="1mo"):
         return pd.DataFrame()
 
 def fetch_nse_current_prices(tickers):
-    """Fetch current stock prices from NSE Kenya website"""
+    """Fetch current stock prices from TradingView for Kenyan stocks"""
     current_data = {}
     
     try:
-        # Updated NSE Kenya's share price URL
-        urls_to_try = [
-            "https://www.nse.co.ke/share-price/",  # New direct share price URL
-            "https://www.nse.co.ke/market-statistics/equity-statistics/",
-            "https://www.nse.co.ke/market-statistics/",
-            "https://www.nse.co.ke/dataservices/market-statistics/",
-            "https://www.nse.co.ke/market-data/"
-        ]
+        # TradingView Kenya stocks URL
+        url = "https://www.tradingview.com/markets/stocks-kenya/market-movers-most-expensive/"
         
         # Send request with headers to mimic a browser
         headers = {
@@ -227,158 +221,136 @@ def fetch_nse_current_prices(tickers):
             'Cache-Control': 'max-age=0'
         }
         
-        # Try each URL until we get data
-        market_table = None
-        response_text = ""
+        print(f"Attempting to fetch stock prices from TradingView...")
+        response = requests.get(url, headers=headers, timeout=20)
+        response.raise_for_status()
         
-        for url in urls_to_try:
+        # Parse HTML
+        soup = BeautifulSoup(response.text, 'lxml')
+        
+        # Save the HTML for debugging
+        debug_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'tradingview_debug.txt')
+        with open(debug_file, 'w', encoding='utf-8') as f:
+            f.write(response.text)
+        print(f"Saved TradingView HTML for debugging to {debug_file}")
+        
+        # In TradingView, each stock is in a table row
+        # Find all stock rows in the table
+        stock_rows = soup.select('tr[data-rowkey]')
+        print(f"Found {len(stock_rows)} stock rows on TradingView")
+        
+        today = datetime.now().strftime('%Y-%m-%d')
+        
+        for row in stock_rows:
             try:
-                print(f"Trying to fetch NSE data from: {url}")
-                response = requests.get(url, headers=headers, timeout=10)
-                response.raise_for_status()
-                response_text = response.text
+                # Get the ticker symbol - it's usually in a cell with the stock name
+                symbol_cells = row.select('td:first-child span')
+                if not symbol_cells:
+                    continue
                 
-                # Parse HTML
-                soup = BeautifulSoup(response.text, 'lxml')
+                # The ticker is typically in the first span element
+                ticker = symbol_cells[0].text.strip()
                 
-                # Try different table selectors based on NSE's current layout
-                possible_selectors = [
-                    'table.table-bordered',
-                    'table.market-data',
-                    'table.equity-prices',
-                    'table.dataTable',
-                    'table.table',  # More generic fallback
-                    '.table',  # Most generic selector
-                    'table'   # Most basic table selector
-                ]
-                
-                for selector in possible_selectors:
-                    tables = soup.select(selector)
-                    print(f"Found {len(tables)} tables with selector '{selector}'")
+                # Check if this ticker is in our list (case insensitive comparison)
+                if ticker.upper() in [t.upper() for t in tickers]:
+                    # Get the price - typically in the second or third column
+                    price_cells = row.select('td:nth-child(2)')
+                    if not price_cells:
+                        price_cells = row.select('td:nth-child(3)')
                     
-                    # Check each table for stock data
-                    for table in tables:
-                        # Check if this table has headers that match stock data
-                        headers = table.select('thead th, tr th')
-                        if headers:
-                            header_texts = [h.text.strip().upper() for h in headers]
-                            print(f"Table headers: {header_texts}")
-                            
-                            # Look for stock-related headers
-                            stock_headers = ['TICKER', 'SYMBOL', 'COUNTER', 'COMPANY', 'SECURITY', 'PRICE']
-                            if any(sh in " ".join(header_texts) for sh in stock_headers):
-                                market_table = table
-                                break
-                
-                if market_table:
-                    break  # We found a table, exit the URL loop
+                    if not price_cells:
+                        continue
                     
+                    # Extract the price text
+                    price_text = price_cells[0].text.strip()
+                    
+                    # Clean up and convert to float
+                    # TradingView format is typically like "411.00KES"
+                    price_text = price_text.replace('KES', '').replace(',', '').strip()
+                    
+                    if not price_text or price_text in ["-", "N/A"]:
+                        continue
+                        
+                    price = float(price_text)
+                    
+                    # Store the price
+                    if ticker not in current_data:
+                        current_data[ticker] = {}
+                    
+                    current_data[ticker][today] = price
+                    print(f"Found price for {ticker}: {price}")
             except Exception as e:
-                print(f"Error with URL {url}: {e}")
+                print(f"Error processing row for ticker: {e}")
                 continue
         
-        # If we found a market table, process it
-        if market_table:
-            # First, look at table headers to identify the right columns
-            headers = market_table.select('thead th, tr th')
-            header_texts = [h.text.strip().upper() for h in headers]
-            
-            # Try to identify column indices for ticker and price
-            ticker_col = None
-            price_col = None
-            
-            # Common column names for ticker and price
-            ticker_names = ['TICKER', 'SYMBOL', 'COUNTER', 'COMPANY', 'SECURITY']
-            price_names = ['PRICE', 'LAST PRICE', 'CLOSING PRICE', 'CURRENT PRICE', 'LTP']
-            
-            for i, header in enumerate(header_texts):
-                for name in ticker_names:
-                    if name in header:
-                        ticker_col = i
-                        break
-                for name in price_names:
-                    if name in header:
-                        price_col = i
-                        break
-            
-            # If we couldn't identify columns, guess based on common NSE layout
-            if ticker_col is None:
-                ticker_col = 0  # Usually first column
-            if price_col is None:
-                # Look for a column that might contain price data (numeric values)
-                rows = market_table.select('tbody tr')
-                if rows:
-                    first_row = rows[0]
-                    cells = first_row.select('td')
-                    for i, cell in enumerate(cells):
-                        text = cell.text.strip()
-                        # Check if this looks like a price (contains digits and possibly decimal point)
-                        if any(c.isdigit() for c in text) and ('.' in text or ',' in text):
-                            price_col = i
-                            break
-                
-                # If still not found, use a default
-                if price_col is None:
-                    price_col = 5  # Common position for price
-            
-            print(f"Using ticker column: {ticker_col}, price column: {price_col}")
-            
-            # Now process rows
-            rows = market_table.select('tbody tr')
-            
-            # Process each row to find our tickers
-            for row in rows:
-                cells = row.select('td')
-                if len(cells) > max(ticker_col, price_col):  # Ensure row has enough cells
-                    try:
-                        ticker = cells[ticker_col].text.strip()
-                        
-                        # Check if this ticker is in our list (case insensitive)
-                        if ticker.upper() in [t.upper() for t in tickers]:
-                            # Extract current price (clean up non-numeric characters)
-                            price_text = cells[price_col].text.strip()
-                            # Convert "49.25" or "49,25" or "KES 49.25" to float
-                            price_text = price_text.replace(',', '').replace('KES', '').strip()
-                            
-                            # Sometimes prices are "-" or "N/A", skip these
-                            if price_text.strip() in ["-", "N/A", ""]:
-                                continue
-                                
-                            last_price = float(price_text)
-                            
-                            # Today's date as the key
-                            today = datetime.now().strftime('%Y-%m-%d')
-                            
-                            # Store in our data dictionary
-                            if ticker not in current_data:
-                                current_data[ticker] = {}
-                            current_data[ticker][today] = last_price
-                            
-                            print(f"Found price for {ticker}: {last_price}")
-                    except (ValueError, IndexError) as e:
-                        print(f"Error parsing row for ticker: {e}")
-                        continue
-        else:
-            # If no table was found, save the HTML for debugging
-            debug_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'debug_html.txt')
-            with open(debug_file, 'w', encoding='utf-8') as f:
-                f.write(response_text)
-            print(f"No market table found. HTML saved to {debug_file} for debugging.")
-        
-        # If the market page format has changed or no data found
+        # If we didn't find any data, try a different approach
         if not current_data:
-            # Try the alternate NSE data source
-            print("No data found using primary method, trying alternate source...")
-            return fetch_nse_data_alternate(tickers)
+            print("No data found using primary method, trying backup approach...")
             
+            # Try finding prices in a different format
+            price_elements = soup.select('div[data-field="price"]')
+            
+            for element in price_elements:
+                try:
+                    # Find the associated symbol
+                    symbol_elements = element.parent.parent.select('div[data-field="symbol"]')
+                    if not symbol_elements:
+                        continue
+                    
+                    ticker = symbol_elements[0].text.strip()
+                    
+                    # Check if this ticker is in our list
+                    if ticker.upper() in [t.upper() for t in tickers]:
+                        # Extract the price
+                        price_text = element.text.strip()
+                        price_text = price_text.replace('KES', '').replace(',', '').strip()
+                        
+                        if not price_text or price_text in ["-", "N/A"]:
+                            continue
+                            
+                        price = float(price_text)
+                        
+                        # Store the price
+                        if ticker not in current_data:
+                            current_data[ticker] = {}
+                        
+                        current_data[ticker][today] = price
+                        print(f"Found price for {ticker}: {price}")
+                except Exception as e:
+                    print(f"Error processing element for ticker: {e}")
+                    continue
+        
+        # If we still have no data
+        if not current_data:
+            print("No data found in TradingView page")
+            
+            # Fallback to Yahoo Finance for current prices
+            for ticker in tickers:
+                try:
+                    yahoo_ticker = f"{ticker}.NR"
+                    stock = yf.Ticker(yahoo_ticker)
+                    info = stock.info
+                    
+                    # Get the current price
+                    if 'currentPrice' in info:
+                        price = info['currentPrice']
+                        
+                        if ticker not in current_data:
+                            current_data[ticker] = {}
+                        
+                        current_data[ticker][today] = price
+                        print(f"Found price for {ticker} from Yahoo Finance: {price}")
+                except Exception as e:
+                    print(f"Error fetching Yahoo Finance data for {ticker}: {e}")
+                    continue
+        
         return current_data
         
     except Exception as e:
-        print(f"Error fetching current NSE prices: {e}")
+        print(f"Error fetching TradingView prices: {e}")
         import traceback
         traceback.print_exc()
-        # Try alternate method
-        return fetch_nse_data_alternate(tickers)
+        return {}
 
 def fetch_nse_data_alternate(tickers):
     """Alternate method to fetch NSE data using a different source"""
