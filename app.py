@@ -173,7 +173,7 @@ all_nse_stocks = [
 selected_stocks = st.sidebar.multiselect("Select Stocks", all_nse_stocks, default=default_stocks)
 
 # Navigation
-page = st.sidebar.radio("Navigation", ["Dashboard", "Signals", "Analysis", "Settings"])
+page = st.sidebar.radio("Navigation", ["Dashboard", "Signals", "Analysis", "Trading Platforms", "Settings"])
 
 # Function to load data
 @st.cache_data(ttl=3600)  # Cache for 1 hour
@@ -190,6 +190,82 @@ def load_data(source, period_code, tickers):
 # Main content
 st.title("NSE Signals Dashboard")
 st.caption(f"Data as of {dt.datetime.now().strftime('%Y-%m-%d %H:%M')}")
+
+# Display content based on selected page
+if page == "Dashboard":
+    st.header("Market Overview")
+    # Dashboard content will go here
+    
+elif page == "Signals":
+    st.header("Trading Signals")
+    # Signals content will go here
+    
+elif page == "Analysis":
+    st.header("Technical Analysis")
+    # Analysis content will go here
+    
+elif page == "Trading Platforms":
+    st.header("NSE Mobile & Online Trading Platforms")
+    
+    st.write("""
+    The Nairobi Securities Exchange (NSE) offers various mobile and online trading platforms 
+    through licensed stockbrokers. These platforms allow investors to buy and sell securities 
+    directly from their phones or computers.
+    """)
+    
+    # Create tabs for Online and Mobile trading
+    tab1, tab2 = st.tabs(["Mobile Trading Apps", "Stockbrokers"])
+    
+    with tab1:
+        st.subheader("Available Mobile Trading Apps")
+        
+        # Create a DataFrame to display broker apps info
+        broker_apps = {
+            "Broker": [
+                "Dyer and Blair", "Kingdom Securities", "AIB-AXYS Africa Ltd", 
+                "Sterling", "Faida Investment Bank", "NCBA", "Genghis", "EFG Hermes"
+            ],
+            "Android": [
+                "✓", "✓", "✓", "✓", "✓", "✓", "✓", "✓"
+            ],
+            "iOS": [
+                "✓", "❌", "✓", "✓", "✓", "✓", "✓", "✓"
+            ]
+        }
+        
+        broker_df = pd.DataFrame(broker_apps)
+        st.dataframe(broker_df, use_container_width=True)
+        
+        st.info("""
+        **How to start trading:**
+        1. Select a licensed stockbroker
+        2. Download their mobile app from Google Play or App Store
+        3. Create an account and complete the KYC process
+        4. Fund your account
+        5. Start trading NSE listed securities
+        """)
+    
+    with tab2:
+        st.subheader("Licensed NSE Stockbrokers")
+        
+        brokers = [
+            "Dyer and Blair", "Suntra Investment Bank", "Old Mutual", "SBG Securities",
+            "Kingdom Securities", "AIB-AXYS Africa Ltd", "ABC Capital", "Sterling Capital",
+            "Faida Investment Bank", "NCBA", "Genghis Capital", "Standard Investment Bank",
+            "Kestrel Capital", "African Alliance", "KCB Capital"
+        ]
+        
+        # Create a multicolumn layout for brokers
+        cols = st.columns(3)
+        for i, broker in enumerate(brokers):
+            cols[i % 3].write(f"- {broker}")
+        
+        st.markdown("---")
+        st.markdown("For more information, visit the [NSE Mobile and Online Trading page](https://www.nse.co.ke/mobile-and-online-trading/)")
+
+elif page == "Settings":
+    st.header("Settings")
+    # Settings content will go here
 
 # Footer with GitHub link
 st.markdown(
