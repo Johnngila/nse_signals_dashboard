@@ -212,8 +212,9 @@ def fetch_nse_current_prices(tickers):
     current_data = {}
     
     try:
-        # NSE Kenya's current market data URL (may need updating if NSE changes their site structure)
+        # Updated NSE Kenya's share price URL
         urls_to_try = [
+            "https://www.nse.co.ke/share-price/",  # New direct share price URL
             "https://www.nse.co.ke/market-statistics/equity-statistics/",
             "https://www.nse.co.ke/market-statistics/",
             "https://www.nse.co.ke/dataservices/market-statistics/",
@@ -232,11 +233,14 @@ def fetch_nse_current_prices(tickers):
         
         # Try each URL until we get data
         market_table = None
+        response_text = ""
+        
         for url in urls_to_try:
             try:
                 print(f"Trying to fetch NSE data from: {url}")
                 response = requests.get(url, headers=headers, timeout=10)
                 response.raise_for_status()
+                response_text = response.text
                 
                 # Parse HTML
                 soup = BeautifulSoup(response.text, 'lxml')
@@ -248,13 +252,27 @@ def fetch_nse_current_prices(tickers):
                     'table.equity-prices',
                     'table.dataTable',
                     'table.table',  # More generic fallback
-                    '.table'  # Most generic selector
+                    '.table',  # Most generic selector
+                    'table'   # Most basic table selector
                 ]
                 
                 for selector in possible_selectors:
-                    market_table = soup.select_one(selector)
-                    if market_table:
-                        break
+                    tables = soup.select(selector)
+                    print(f"Found {len(tables)} tables with selector '{selector}'")
+                    
+                    # Check each table for stock data
+                    for table in tables:
+                        # Check if this table has headers that match stock data
+                        headers = table.select('thead th, tr th')
+                        if headers:
+                            header_texts = [h.text.strip().upper() for h in headers]
+                            print(f"Table headers: {header_texts}")
+                            
+                            # Look for stock-related headers
+                            stock_headers = ['TICKER', 'SYMBOL', 'COUNTER', 'COMPANY', 'SECURITY', 'PRICE']
+                            if any(sh in " ".join(header_texts) for sh in stock_headers):
+                                market_table = table
+                                break
                 
                 if market_table:
                     break  # We found a table, exit the URL loop
@@ -266,7 +284,7 @@ def fetch_nse_current_prices(tickers):
         # If we found a market table, process it
         if market_table:
             # First, look at table headers to identify the right columns
-            headers = market_table.select('thead th')
+            headers = market_table.select('thead th, tr th')
             header_texts = [h.text.strip().upper() for h in headers]
             
             # Try to identify column indices for ticker and price
@@ -278,16 +296,36 @@ def fetch_nse_current_prices(tickers):
             price_names = ['PRICE', 'LAST PRICE', 'CLOSING PRICE', 'CURRENT PRICE', 'LTP']
             
             for i, header in enumerate(header_texts):
-                if any(name in header for name in ticker_names):
-                    ticker_col = i
-                if any(name in header for name in price_names):
-                    price_col = i
+                for name in ticker_names:
+                    if name in header:
+                        ticker_col = i
+                        break
+                for name in price_names:
+                    if name in header:
+                        price_col = i
+                        break
             
             # If we couldn't identify columns, guess based on common NSE layout
             if ticker_col is None:
                 ticker_col = 0  # Usually first column
             if price_col is None:
-                price_col = 5  # Common position for price
+                # Look for a column that might contain price data (numeric values)
+                rows = market_table.select('tbody tr')
+                if rows:
+                    first_row = rows[0]
+                    cells = first_row.select('td')
+                    for i, cell in enumerate(cells):
+                        text = cell.text.strip()
+                        # Check if this looks like a price (contains digits and possibly decimal point)
+                        if any(c.isdigit() for c in text) and ('.' in text or ',' in text):
+                            price_col = i
+                            break
+                
+                # If still not found, use a default
+                if price_col is None:
+                    price_col = 5  # Common position for price
+            
+            print(f"Using ticker column: {ticker_col}, price column: {price_col}")
             
             # Now process rows
             rows = market_table.select('tbody tr')
@@ -305,6 +343,11 @@ def fetch_nse_current_prices(tickers):
                             price_text = cells[price_col].text.strip()
                             # Convert "49.25" or "49,25" or "KES 49.25" to float
                             price_text = price_text.replace(',', '').replace('KES', '').strip()
+                            
+                            # Sometimes prices are "-" or "N/A", skip these
+                            if price_text.strip() in ["-", "N/A", ""]:
+                                continue
+                                
                             last_price = float(price_text)
                             
                             # Today's date as the key
@@ -319,6 +362,12 @@ def fetch_nse_current_prices(tickers):
                     except (ValueError, IndexError) as e:
                         print(f"Error parsing row for ticker: {e}")
                         continue
+        else:
+            # If no table was found, save the HTML for debugging
+            debug_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'debug_html.txt')
+            with open(debug_file, 'w', encoding='utf-8') as f:
+                f.write(response_text)
+            print(f"No market table found. HTML saved to {debug_file} for debugging.")
         
         # If the market page format has changed or no data found
         if not current_data:
@@ -330,6 +379,8 @@ def fetch_nse_current_prices(tickers):
         
     except Exception as e:
         print(f"Error fetching current NSE prices: {e}")
+        import traceback
+        traceback.print_exc()
         # Try alternate method
         return fetch_nse_data_alternate(tickers)
 
