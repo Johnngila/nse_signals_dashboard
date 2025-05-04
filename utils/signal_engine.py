@@ -94,21 +94,27 @@ def generate_ma_crossover_signals(data, short_window=20, long_window=50, confirm
             if crossover_up.iloc[i]:
                 # Only generate buy signals in uptrend or if trend filter is disabled
                 if trend_direction.iloc[i] >= 0 or not trend_filter:
-                    signals.iloc[i, signals.columns.get_loc(signal_col)] = 1
+                    # Use a safer method for setting values
+                    col_idx = signals.columns.get_loc(signal_col)
+                    signals.iat[i, col_idx] = 1
             elif crossover_down.iloc[i]:
                 # Only generate sell signals in downtrend or if trend filter is disabled
                 if trend_direction.iloc[i] <= 0 or not trend_filter:
-                    signals.iloc[i, signals.columns.get_loc(signal_col)] = -1
+                    col_idx = signals.columns.get_loc(signal_col)
+                    signals.iat[i, col_idx] = -1
                     
             # Apply confirmation - signal must persist for confirmation_window periods
             if i >= confirmation_window:
                 ma_diff_positive = short_ma.iloc[i-confirmation_window:i+1] > long_ma.iloc[i-confirmation_window:i+1]
                 ma_diff_negative = short_ma.iloc[i-confirmation_window:i+1] < long_ma.iloc[i-confirmation_window:i+1]
                 
-                if not all(ma_diff_positive) and signals.iloc[i, signals.columns.get_loc(signal_col)] == 1:
-                    signals.iloc[i, signals.columns.get_loc(signal_col)] = 0
-                elif not all(ma_diff_negative) and signals.iloc[i, signals.columns.get_loc(signal_col)] == -1:
-                    signals.iloc[i, signals.columns.get_loc(signal_col)] = 0
+                # Check if all values are True using .all() method
+                if not ma_diff_positive.all() and signals.iat[i, signals.columns.get_loc(signal_col)] == 1:
+                    col_idx = signals.columns.get_loc(signal_col)
+                    signals.iat[i, col_idx] = 0
+                elif not ma_diff_negative.all() and signals.iat[i, signals.columns.get_loc(signal_col)] == -1:
+                    col_idx = signals.columns.get_loc(signal_col)
+                    signals.iat[i, col_idx] = 0
         
         # Add price and MA columns for reference
         signals[f"{ticker}_Price"] = data[ticker]
@@ -182,13 +188,15 @@ def generate_rsi_signals(data, window=14, overbought=70, oversold=30, trend_wind
             if all(rsi.iloc[i-confirmation_days:i] < oversold) and rsi.iloc[i] > rsi.iloc[i-1]:
                 # Only take buy signals if trend is up or neutral
                 if trend_direction.iloc[i] >= 0:
-                    signals.iloc[i, signals.columns.get_loc(signal_col)] = 1
+                    col_idx = signals.columns.get_loc(signal_col)
+                    signals.iat[i, col_idx] = 1
                     
             # Sell signal: RSI has been above overbought for confirmation_days and is now falling
             elif all(rsi.iloc[i-confirmation_days:i] > overbought) and rsi.iloc[i] < rsi.iloc[i-1]:
                 # Only take sell signals if trend is down or neutral
                 if trend_direction.iloc[i] <= 0:
-                    signals.iloc[i, signals.columns.get_loc(signal_col)] = -1
+                    col_idx = signals.columns.get_loc(signal_col)
+                    signals.iat[i, col_idx] = -1
         
         # Add price, RSI, and trend columns for reference
         signals[f"{ticker}_Price"] = data[ticker]
@@ -246,11 +254,13 @@ def generate_macd_signals(data, fast_period=12, slow_period=26, signal_period=9,
             if crossover_up.iloc[i]:
                 # If zero line filter is enabled, only generate buy when MACD is positive or turning positive
                 if not zero_line_filter or macd.iloc[i] > 0 or (macd.iloc[i] > macd.iloc[i-1] and macd.iloc[i-1] < 0):
-                    signals.iloc[i, signals.columns.get_loc(signal_col)] = 1
+                    col_idx = signals.columns.get_loc(signal_col)
+                    signals.iat[i, col_idx] = 1
             elif crossover_down.iloc[i]:
                 # If zero line filter is enabled, only generate sell when MACD is negative or turning negative
                 if not zero_line_filter or macd.iloc[i] < 0 or (macd.iloc[i] < macd.iloc[i-1] and macd.iloc[i-1] > 0):
-                    signals.iloc[i, signals.columns.get_loc(signal_col)] = -1
+                    col_idx = signals.columns.get_loc(signal_col)
+                    signals.iat[i, col_idx] = -1
         
         # Add price, MACD, and signal line columns for reference
         signals[f"{ticker}_Price"] = data[ticker]
@@ -317,32 +327,38 @@ def generate_bollinger_signals(data, window=20, num_std=2, mean_reversion=False,
                     # In a downtrend, wait for confirmation of bounce with a rising day
                     if trend_direction.iloc[i] < 0:
                         if data[ticker].iloc[i] > data[ticker].iloc[i-1]:
-                            signals.iloc[i, signals.columns.get_loc(signal_col)] = 1
+                            col_idx = signals.columns.get_loc(signal_col)
+                            signals.iat[i, col_idx] = 1
                     else:
                         # In sideways or uptrend, take signal immediately
-                        signals.iloc[i, signals.columns.get_loc(signal_col)] = 1
+                        col_idx = signals.columns.get_loc(signal_col)
+                        signals.iat[i, col_idx] = 1
                         
                 # Sell signal when price touches or crosses above upper band
                 elif data[ticker].iloc[i] >= upper_band.iloc[i] and data[ticker].iloc[i-1] < upper_band.iloc[i-1]:
                     # In an uptrend, wait for confirmation of drop with a falling day
                     if trend_direction.iloc[i] > 0:
                         if data[ticker].iloc[i] < data[ticker].iloc[i-1]:
-                            signals.iloc[i, signals.columns.get_loc(signal_col)] = -1
+                            col_idx = signals.columns.get_loc(signal_col)
+                            signals.iat[i, col_idx] = -1
                     else:
                         # In sideways or downtrend, take signal immediately
-                        signals.iloc[i, signals.columns.get_loc(signal_col)] = -1
+                        col_idx = signals.columns.get_loc(signal_col)
+                        signals.iat[i, col_idx] = -1
         else:
             # Breakout strategy: Buy on upper band breakout, sell on lower band breakout
             for i in range(1, len(signals)):
                 # Buy signal when price breaks above upper band in uptrend
                 if data[ticker].iloc[i] > upper_band.iloc[i] and data[ticker].iloc[i-1] <= upper_band.iloc[i-1]:
                     if trend_direction.iloc[i] >= 0:  # Only in uptrend or sideways
-                        signals.iloc[i, signals.columns.get_loc(signal_col)] = 1
+                        col_idx = signals.columns.get_loc(signal_col)
+                        signals.iat[i, col_idx] = 1
                 
                 # Sell signal when price breaks below lower band in downtrend
                 elif data[ticker].iloc[i] < lower_band.iloc[i] and data[ticker].iloc[i-1] >= lower_band.iloc[i-1]:
                     if trend_direction.iloc[i] <= 0:  # Only in downtrend or sideways
-                        signals.iloc[i, signals.columns.get_loc(signal_col)] = -1
+                        col_idx = signals.columns.get_loc(signal_col)
+                        signals.iat[i, col_idx] = -1
         
         # Add price and Bollinger Bands columns for reference
         signals[f"{ticker}_Price"] = data[ticker]
@@ -435,13 +451,15 @@ def generate_custom_signals(data, ma_period=50, rsi_period=14, macd_fast=12, mac
             if momentum_signal.iloc[i] == -1: sell_count += 1
             
             # Store consensus level (positive for buy consensus, negative for sell consensus)
-            signals.iloc[i, signals.columns.get_loc(consensus_col)] = buy_count - sell_count
+            col_idx_consensus = signals.columns.get_loc(consensus_col)
+            signals.iat[i, col_idx_consensus] = buy_count - sell_count
             
             # Generate final signal based on consensus threshold
+            col_idx_signal = signals.columns.get_loc(signal_col)
             if buy_count >= min_consensus:
-                signals.iloc[i, signals.columns.get_loc(signal_col)] = 1
+                signals.iat[i, col_idx_signal] = 1
             elif sell_count >= min_consensus:
-                signals.iloc[i, signals.columns.get_loc(signal_col)] = -1
+                signals.iat[i, col_idx_signal] = -1
         
         # Add all indicators for reference
         signals[f"{ticker}_Price"] = data[ticker]

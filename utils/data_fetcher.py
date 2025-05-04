@@ -50,20 +50,33 @@ def fetch_stock_data(tickers=None, period="1mo", source="nse"):
             # Try to fetch data from Yahoo Finance
             data = yf.download(yahoo_tickers, period=period, group_by='ticker')
             
-            # If data is multi-level, get the closing prices
-            if isinstance(data.columns, pd.MultiIndex):
-                close_data = data.loc[:, (slice(None), 'Close')]
-                # Flatten the column names
-                close_data.columns = [x[0].replace('.NR', '') for x in close_data.columns]
-            else:
-                close_data = data['Close']
-            
-            print(f"Yahoo Finance data shape: {close_data.shape}")
-            if close_data.empty:
-                print("Yahoo Finance returned empty data, trying NSE fallback")
-                return fetch_nse_data(tickers, period)
+            # Check if data is not None and not empty before accessing attributes
+            if data is not None and not data.empty:
+                # If data is multi-level, get the closing prices
+                if isinstance(data.columns, pd.MultiIndex):
+                    # Use a different approach to handle MultiIndex
+                    close_data = pd.DataFrame()
+                    for ticker in yahoo_tickers:
+                        # Clean ticker name by removing .NR suffix for column naming
+                        clean_ticker = ticker.replace('.NR', '')
+                        try:
+                            # Extract Close price for this ticker
+                            ticker_close = data[ticker]['Close']
+                            close_data[clean_ticker] = ticker_close
+                        except Exception as e:
+                            print(f"Error extracting close price for {ticker}: {e}")
+                else:
+                    close_data = data['Close']
                 
-            return close_data
+                print(f"Yahoo Finance data shape: {close_data.shape}")
+                if close_data.empty:
+                    print("Yahoo Finance returned empty data, trying NSE fallback")
+                    return fetch_nse_data(tickers, period)
+                    
+                return close_data
+            else:
+                print("Yahoo Finance returned None or empty data, trying NSE fallback")
+                return fetch_nse_data(tickers, period)
         
         except Exception as e:
             print(f"Error fetching data from Yahoo Finance: {e}")
@@ -243,102 +256,47 @@ def fetch_nse_current_prices(tickers):
         
         for element in stock_elements:
             try:
-                # Extract ticker from the element
-                ticker = element.text.strip()
-                
-                # Check if this ticker is in our list (case insensitive)
-                if ticker.upper() in [t.upper() for t in tickers]:
-                    # Now we need to find the price for this ticker
-                    # This is more challenging as it requires navigating to the stock's detail page
-                    # For now, we'll try to extract price information from the main page
+                # Extract ticker from href
+                href = element.get('href', '')
+                # Check if href is a string before using string methods
+                if href and isinstance(href, str) and href.startswith('/stock/'):
+                    ticker = href.split('/stock/')[1].strip()
                     
-                    # Check if there's a parent element with price information
-                    parent_element = element.parent.parent
-                    if parent_element:
-                        price_text = parent_element.text.strip()
-                        # Try to extract price using pattern matching
-                        # Look for patterns like "KES X.XX" or similar
-                        if "KES" in price_text:
-                            # Extract the price - this is a simplified approach
-                            try:
-                                # Split by KES and take the next part
-                                parts = price_text.split("KES")
-                                if len(parts) > 1:
-                                    # Take the part after KES and clean it
-                                    price_part = parts[1].strip()
-                                    # Extract numeric value (assuming it's at the beginning)
-                                    price_value = ""
-                                    for char in price_part:
-                                        if char.isdigit() or char == ".":
-                                            price_value += char
-                                        else:
-                                            break
-                                    
-                                    if price_value:
-                                        price = float(price_value)
-                                        
-                                        # Store the price
-                                        if ticker not in current_data:
-                                            current_data[ticker] = {}
-                                        
-                                        current_data[ticker][today] = price
-                                        print(f"Found price for {ticker}: {price}")
-                            except Exception as e:
-                                print(f"Error extracting price for {ticker}: {e}")
-            
-            except Exception as e:
-                print(f"Error processing stock element: {e}")
-                continue
-        
-        # If we didn't get many tickers, try a different approach
-        if len(current_data) < len(tickers) * 0.5:  # If we got less than half the tickers
-            print("Few tickers found with first method, trying alternative approach...")
-            
-            # Try to find all potential ticker symbols on the page
-            potential_tickers = soup.select("a[href^='/stock/']")
-            
-            for element in potential_tickers:
-                try:
-                    # Extract ticker from href
-                    href = element.get('href', '')
-                    if href.startswith('/stock/'):
-                        ticker = href.split('/stock/')[1].strip()
+                    # Check if this ticker is in our list
+                    if ticker.upper() in [t.upper() for t in tickers] and ticker not in current_data:
+                        # Found a ticker, now try to fetch its price
+                        # We'll need to make another request to the stock's detail page
+                        stock_url = f"https://live.mystocks.co.ke/stock/{ticker}"
                         
-                        # Check if this ticker is in our list
-                        if ticker.upper() in [t.upper() for t in tickers] and ticker not in current_data:
-                            # Found a ticker, now try to fetch its price
-                            # We'll need to make another request to the stock's detail page
-                            stock_url = f"https://live.mystocks.co.ke/stock/{ticker}"
+                        try:
+                            stock_response = requests.get(stock_url, headers=headers, timeout=10)
+                            stock_response.raise_for_status()
                             
-                            try:
-                                stock_response = requests.get(stock_url, headers=headers, timeout=10)
-                                stock_response.raise_for_status()
+                            stock_soup = BeautifulSoup(stock_response.text, 'lxml')
+                            
+                            # Look for the price in the stock detail page
+                            # The exact structure might vary, so we'll look for common patterns
+                            price_elements = stock_soup.select(".price, .stock-price, .current-price")
+                            
+                            if price_elements:
+                                price_text = price_elements[0].text.strip()
+                                # Clean up the price text
+                                price_text = price_text.replace('KES', '').replace(',', '').strip()
                                 
-                                stock_soup = BeautifulSoup(stock_response.text, 'lxml')
-                                
-                                # Look for the price in the stock detail page
-                                # The exact structure might vary, so we'll look for common patterns
-                                price_elements = stock_soup.select(".price, .stock-price, .current-price")
-                                
-                                if price_elements:
-                                    price_text = price_elements[0].text.strip()
-                                    # Clean up the price text
-                                    price_text = price_text.replace('KES', '').replace(',', '').strip()
+                                if price_text and price_text not in ["-", "N/A"]:
+                                    price = float(price_text)
                                     
-                                    if price_text and price_text not in ["-", "N/A"]:
-                                        price = float(price_text)
-                                        
-                                        # Store the price
-                                        if ticker not in current_data:
-                                            current_data[ticker] = {}
-                                        
-                                        current_data[ticker][today] = price
-                                        print(f"Found price for {ticker} (method 2): {price}")
-                            except Exception as e:
-                                print(f"Error fetching detail page for {ticker}: {e}")
-                except Exception as e:
-                    print(f"Error processing ticker link: {e}")
-                    continue
+                                    # Store the price
+                                    if ticker not in current_data:
+                                        current_data[ticker] = {}
+                                    
+                                    current_data[ticker][today] = price
+                                    print(f"Found price for {ticker} (method 2): {price}")
+                        except Exception as e:
+                            print(f"Error fetching detail page for {ticker}: {e}")
+            except Exception as e:
+                print(f"Error processing ticker link: {e}")
+                continue
         
         # If we still don't have enough data, try a third approach using the entire page text
         if len(current_data) < len(tickers) * 0.7:  # If we still haven't found most tickers
@@ -383,7 +341,7 @@ def fetch_nse_current_prices(tickers):
                         except Exception as e:
                             print(f"Error extracting price for {ticker} from text: {e}")
         
-        # If we still don't have enough data, try a fourth approach using a secondary page
+        # If we still don't have data for all tickers, try a fourth approach using a secondary page
         if len(current_data) < len(tickers):
             print("Still missing tickers, trying market data page...")
             
@@ -540,14 +498,30 @@ def fetch_nse_historical_data(tickers, existing_data=None):
                 stock_data = yf.download(yahoo_ticker, period="1y", progress=False)
                 
                 # If we got data, process it
-                if not stock_data.empty:
-                    for date, row in stock_data.iterrows():
-                        date_str = date.strftime('%Y-%m-%d')
-                        close_price = row['Close']
-                        
-                        if ticker not in historical_data:
-                            historical_data[ticker] = {}
-                        historical_data[ticker][date_str] = close_price
+                if stock_data is not None and not stock_data.empty:
+                    for date_idx in range(len(stock_data.index)):
+                        try:
+                            # Use a more robust approach to handle the date
+                            date_obj = stock_data.index[date_idx]
+                            
+                            # Convert to string in a way that works for any date-like object
+                            if hasattr(date_obj, 'strftime'):
+                                date_str = date_obj.strftime('%Y-%m-%d')
+                            elif hasattr(date_obj, 'isoformat'):
+                                date_str = date_obj.isoformat().split('T')[0]
+                            else:
+                                date_str = str(date_obj).split(' ')[0]
+                            
+                            # Get the row data using .iloc instead of iterrows
+                            row = stock_data.iloc[date_idx]
+                            close_price = row['Close']
+                            
+                            if ticker not in historical_data:
+                                historical_data[ticker] = {}
+                            historical_data[ticker][date_str] = close_price
+                        except Exception as date_error:
+                            print(f"Error processing date at index {date_idx} for {ticker}: {date_error}")
+                            continue
             except Exception as e:
                 print(f"Error fetching Yahoo data for {ticker}: {e}")
                 continue
