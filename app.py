@@ -185,7 +185,25 @@ def load_data(source, period_code, tickers):
         from utils.data_fetcher import generate_mock_data
         return generate_mock_data(tickers, days)
     else:
-        return fetch_stock_data(tickers=tickers, period=period_code, source=source)
+        try:
+            # Try to fetch data from the specified source
+            df = fetch_stock_data(tickers=tickers, period=period_code, source=source)
+            
+            # If the dataframe is empty, fall back to mock data
+            if df is None or df.empty:
+                st.warning("Could not retrieve real data - showing mock data instead")
+                from utils.data_fetcher import generate_mock_data
+                days_map = {"1d": 1, "1w": 7, "1mo": 30, "3mo": 90, "6mo": 180, "1y": 365}
+                days = days_map.get(period_code, 30)
+                return generate_mock_data(tickers, days)
+            return df
+        except Exception as e:
+            st.error(f"Error loading data: {str(e)}")
+            # Always fall back to mock data on any error
+            from utils.data_fetcher import generate_mock_data
+            days_map = {"1d": 1, "1w": 7, "1mo": 30, "3mo": 90, "6mo": 180, "1y": 365}
+            days = days_map.get(period_code, 30)
+            return generate_mock_data(tickers, days)
 
 # Main content
 st.title("NSE Signals Dashboard")

@@ -37,11 +37,15 @@ def fetch_stock_data(tickers=None, period="1mo", source="nse"):
             'BAT'    # British American Tobacco
         ]
     
+    print(f"Fetching data for {tickers} from source: {source}, period: {period}")
+    
     # Handle different data sources
     if source.lower() == 'yahoo':
         try:
             # Add .NR extension for Yahoo Finance NSE tickers if not already present
             yahoo_tickers = [f"{ticker}.NR" if not ticker.endswith('.NR') else ticker for ticker in tickers]
+            
+            print(f"Using Yahoo Finance with tickers: {yahoo_tickers}")
             
             # Try to fetch data from Yahoo Finance
             data = yf.download(yahoo_tickers, period=period, group_by='ticker')
@@ -53,6 +57,11 @@ def fetch_stock_data(tickers=None, period="1mo", source="nse"):
                 close_data.columns = [x[0].replace('.NR', '') for x in close_data.columns]
             else:
                 close_data = data['Close']
+            
+            print(f"Yahoo Finance data shape: {close_data.shape}")
+            if close_data.empty:
+                print("Yahoo Finance returned empty data, trying NSE fallback")
+                return fetch_nse_data(tickers, period)
                 
             return close_data
         
@@ -69,6 +78,10 @@ def fetch_stock_data(tickers=None, period="1mo", source="nse"):
         # For now, try NSE source
         print("Alpha Vantage API not implemented, trying NSE data")
         return fetch_nse_data(tickers, period)
+    
+    elif source.lower() == 'mock':
+        print("Using mock data source")
+        return generate_mock_data(tickers, days=30)
     
     else:
         raise ValueError(f"Unsupported data source: {source}")
@@ -98,36 +111,63 @@ def fetch_nse_data(tickers=None, period="1mo"):
             'BAT'    # British American Tobacco
         ]
     
+    print(f"fetch_nse_data called for tickers: {tickers}, period: {period}")
+    
     # Create data directory if it doesn't exist
     data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
     os.makedirs(data_dir, exist_ok=True)
     
     # Define cache file path
     cache_file = os.path.join(data_dir, 'nse_data_cache.json')
+    print(f"Cache file path: {cache_file}")
     
     # Try to get fresh data from NSE website
     try:
         # Get current market data
+        print("Attempting to fetch current prices from NSE...")
         current_data = fetch_nse_current_prices(tickers)
+        
+        if not current_data:
+            print("WARNING: No current data found from NSE website")
+        else:
+            print(f"Retrieved current prices for: {list(current_data.keys())}")
         
         # Load historical data from cache if available
         historical_data = {}
         if os.path.exists(cache_file):
+            print("Loading data from cache file...")
             with open(cache_file, 'r') as f:
                 cache = json.load(f)
                 historical_data = cache.get('historical_data', {})
                 last_update = datetime.fromisoformat(cache.get('last_update', '2000-01-01'))
                 
+                print(f"Cache last updated: {last_update}")
+                print(f"Cached tickers: {list(historical_data.keys())}")
+                
                 # Check if cache is recent (less than 24 hours old)
                 if (datetime.now() - last_update).total_seconds() > 86400:  # 24 hours in seconds
                     # If cache is old, supplement with NSE historical data
+                    print("Cache is older than 24 hours, fetching historical data...")
                     historical_data = fetch_nse_historical_data(tickers, historical_data)
         else:
             # If no cache exists, get historical data
+            print("No cache file found, fetching historical data...")
             historical_data = fetch_nse_historical_data(tickers)
         
         # Merge current with historical data
         all_data = merge_current_with_historical(current_data, historical_data)
+        
+        # Debug output
+        for ticker in all_data:
+            print(f"Ticker {ticker} has {len(all_data[ticker])} data points")
+        
+        # If we have no data points at all, fallback to mock data
+        all_empty = all(len(all_data.get(ticker, {})) == 0 for ticker in tickers)
+        if all_empty:
+            print("WARNING: No data available from NSE or cache. Falling back to mock data.")
+            mock_data = generate_mock_data(tickers)
+            print(f"Generated mock data with shape: {mock_data.shape}")
+            return mock_data
         
         # Save updated data to cache
         cache = {
@@ -138,24 +178,34 @@ def fetch_nse_data(tickers=None, period="1mo"):
             json.dump(cache, f)
             
         # Convert to DataFrame and filter by period
-        return create_dataframe_from_merged_data(all_data, period)
+        result_df = create_dataframe_from_merged_data(all_data, period)
+        print(f"Final result dataframe shape: {result_df.shape}")
+        
+        return result_df
         
     except Exception as e:
         print(f"Error fetching NSE data: {e}")
+        import traceback
+        traceback.print_exc()
         
         # If there's a cache file, try to use it
         if os.path.exists(cache_file):
             try:
+                print("Attempting to load from cache after error...")
                 with open(cache_file, 'r') as f:
                     cache = json.load(f)
                     all_data = cache.get('historical_data', {})
-                    return create_dataframe_from_merged_data(all_data, period)
+                    result_df = create_dataframe_from_merged_data(all_data, period)
+                    print(f"Retrieved data from cache with shape: {result_df.shape}")
+                    return result_df
             except Exception as cache_error:
                 print(f"Error loading cache: {cache_error}")
         
         # If all else fails, return mock data
-        print("Falling back to mock data")
-        return generate_mock_data(tickers)
+        print("All attempts failed, falling back to mock data")
+        mock_data = generate_mock_data(tickers)
+        print(f"Generated mock data with shape: {mock_data.shape}")
+        return mock_data
 
 def fetch_nse_current_prices(tickers):
     """Fetch current stock prices from NSE Kenya website"""
