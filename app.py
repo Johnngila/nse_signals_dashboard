@@ -194,7 +194,183 @@ st.caption(f"Data as of {dt.datetime.now().strftime('%Y-%m-%d %H:%M')}")
 # Display content based on selected page
 if page == "Dashboard":
     st.header("Market Overview")
-    # Dashboard content will go here
+    
+    # Load the stock data
+    with st.spinner("Loading market data..."):
+        source_code = source_mapping.get(data_source, "nse")
+        period_code = period_mapping.get(period, "1mo")
+        
+        # Fetch data
+        df = load_data(source_code, period_code, selected_stocks)
+    
+    if df is not None and not df.empty:
+        # Create a grid layout for key metrics
+        st.subheader("Current Prices")
+        
+        # Create a card layout for current prices
+        cols = st.columns(len(selected_stocks))
+        for i, ticker in enumerate(selected_stocks):
+            if ticker in df.columns:
+                # Get latest price
+                latest_price = df[ticker].iloc[-1]
+                
+                # Calculate change and percent change
+                prev_price = df[ticker].iloc[-2] if len(df) > 1 else latest_price
+                change = latest_price - prev_price
+                pct_change = (change / prev_price) * 100 if prev_price > 0 else 0
+                
+                # Determine if the stock is up or down
+                color = theme_colors["success"] if change >= 0 else theme_colors["danger"]
+                arrow = "↑" if change >= 0 else "↓"
+                
+                # Display in a card format
+                with cols[i]:
+                    st.markdown(f"""
+                    <div style="background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h3 style="margin: 0; color: #333;">{ticker}</h3>
+                        <p style="font-size: 24px; font-weight: bold; margin: 10px 0;">KES {latest_price:.2f}</p>
+                        <p style="color: {color}; margin: 0;">
+                            {arrow} {abs(change):.2f} ({abs(pct_change):.2f}%)
+                        </p>
+                    </div>
+                    """, unsafe_allow_html=True)
+        
+        # Add a price chart
+        st.subheader("Price Movement")
+        
+        # Create tabs for different chart types
+        chart_tabs = st.tabs(["Line Chart", "Candlestick", "Area Chart"])
+        
+        with chart_tabs[0]:
+            # Line chart using Plotly
+            fig = go.Figure()
+            
+            for ticker in selected_stocks:
+                if ticker in df.columns:
+                    fig.add_trace(
+                        go.Scatter(
+                            x=df.index,
+                            y=df[ticker],
+                            mode='lines',
+                            name=ticker,
+                            line=dict(width=2)
+                        )
+                    )
+            
+            # Update layout
+            fig.update_layout(
+                height=500,
+                margin=dict(l=20, r=20, t=50, b=20),
+                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+                xaxis_title="Date",
+                yaxis_title="Price (KES)",
+                hovermode="x unified",
+            )
+            
+            st.plotly_chart(fig, use_container_width=True)
+        
+        with chart_tabs[1]:
+            # For candlestick, we'd need OHLC data which we may not have
+            # Let's create a simplified version using daily price changes
+            if len(df) > 1:
+                # Select a single stock to display in candlestick
+                selected_ticker = st.selectbox("Select Stock for Candlestick View", selected_stocks)
+                
+                if selected_ticker in df.columns:
+                    # Create OHLC-like data (simplified)
+                    candle_data = pd.DataFrame()
+                    candle_data['date'] = df.index
+                    candle_data['ticker'] = selected_ticker
+                    candle_data['open'] = df[selected_ticker].shift(1) 
+                    candle_data['high'] = df[selected_ticker].rolling(2).max()
+                    candle_data['low'] = df[selected_ticker].rolling(2).min()
+                    candle_data['close'] = df[selected_ticker]
+                    
+                    # Clean up data
+                    candle_data = candle_data.dropna()
+                    
+                    # Create candlestick chart
+                    if not candle_data.empty:
+                        fig = go.Figure(go.Candlestick(
+                            x=candle_data['date'],
+                            open=candle_data['open'],
+                            high=candle_data['high'],
+                            low=candle_data['low'],
+                            close=candle_data['close'],
+                            name=selected_ticker
+                        ))
+                        
+                        fig.update_layout(
+                            height=500,
+                            margin=dict(l=20, r=20, t=50, b=20),
+                            xaxis_title="Date",
+                            yaxis_title="Price (KES)",
+                            title=f"{selected_ticker} Price Movement"
+                        )
+                        
+                        st.plotly_chart(fig, use_container_width=True)
+                    else:
+                        st.warning("Not enough data to display candlestick chart")
+            else:
+                st.warning("Candlestick chart requires at least 2 days of data")
+        
+        with chart_tabs[2]:
+            # Area chart
+            fig = go.Figure()
+            
+            for ticker in selected_stocks:
+                if ticker in df.columns:
+                    fig.add_trace(
+                        go.Scatter(
+                            x=df.index,
+                            y=df[ticker],
+                            mode='lines',
+                            name=ticker,
+                            fill='tozeroy',
+                            opacity=0.6
+                        )
+                    )
+            
+            # Update layout
+            fig.update_layout(
+                height=500,
+                margin=dict(l=20, r=20, t=50, b=20),
+                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+                xaxis_title="Date",
+                yaxis_title="Price (KES)",
+                hovermode="x unified",
+            )
+            
+            st.plotly_chart(fig, use_container_width=True)
+        
+        # Add a volume chart or additional performance metrics
+        st.subheader("Performance Metrics")
+        
+        # Prepare performance metrics
+        metrics_data = {}
+        for ticker in selected_stocks:
+            if ticker in df.columns and len(df) > 0:
+                current_price = df[ticker].iloc[-1]
+                
+                # Calculate metrics
+                metrics_data[ticker] = {
+                    "Current Price": f"KES {current_price:.2f}",
+                    "1-Day Change": f"{((df[ticker].iloc[-1] / df[ticker].iloc[-2] - 1) * 100):.2f}%" if len(df) > 1 else "N/A",
+                    "7-Day Change": f"{((df[ticker].iloc[-1] / df[ticker].iloc[-7] - 1) * 100):.2f}%" if len(df) > 7 else "N/A",
+                    "30-Day Change": f"{((df[ticker].iloc[-1] / df[ticker].iloc[-30] - 1) * 100):.2f}%" if len(df) > 30 else "N/A",
+                    "Volatility (30D)": f"{df[ticker].pct_change().rolling(30).std().iloc[-1] * 100:.2f}%" if len(df) > 30 else "N/A"
+                }
+        
+        if metrics_data:
+            # Convert to DataFrame for display
+            metrics_df = pd.DataFrame(metrics_data).T
+            st.dataframe(metrics_df, use_container_width=True)
+        
+        # Data source info
+        st.caption(f"Data Source: {data_source} | Last Updated: {dt.datetime.now().strftime('%Y-%m-%d %H:%M')}")
+        
+    else:
+        st.error("No data available for the selected stocks and time period. Please try different settings or check your internet connection.")
     
 elif page == "Signals":
     st.header("Trading Signals")

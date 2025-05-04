@@ -162,36 +162,100 @@ def fetch_nse_current_prices(tickers):
     current_data = {}
     
     try:
-        # NSE Kenya's market summary URL
-        url = "https://www.nse.co.ke/market-statistics/equity-statistics/"
+        # NSE Kenya's current market data URL (may need updating if NSE changes their site structure)
+        urls_to_try = [
+            "https://www.nse.co.ke/market-statistics/equity-statistics/",
+            "https://www.nse.co.ke/market-statistics/",
+            "https://www.nse.co.ke/dataservices/market-statistics/",
+            "https://www.nse.co.ke/market-data/"
+        ]
         
         # Send request with headers to mimic a browser
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Cache-Control': 'max-age=0'
         }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
         
-        # Parse HTML
-        soup = BeautifulSoup(response.text, 'lxml')
+        # Try each URL until we get data
+        market_table = None
+        for url in urls_to_try:
+            try:
+                print(f"Trying to fetch NSE data from: {url}")
+                response = requests.get(url, headers=headers, timeout=10)
+                response.raise_for_status()
+                
+                # Parse HTML
+                soup = BeautifulSoup(response.text, 'lxml')
+                
+                # Try different table selectors based on NSE's current layout
+                possible_selectors = [
+                    'table.table-bordered',
+                    'table.market-data',
+                    'table.equity-prices',
+                    'table.dataTable',
+                    'table.table',  # More generic fallback
+                    '.table'  # Most generic selector
+                ]
+                
+                for selector in possible_selectors:
+                    market_table = soup.select_one(selector)
+                    if market_table:
+                        break
+                
+                if market_table:
+                    break  # We found a table, exit the URL loop
+                    
+            except Exception as e:
+                print(f"Error with URL {url}: {e}")
+                continue
         
-        # Find the market table - this selector may need adjustment based on NSE website structure
-        market_table = soup.select_one('table.table-bordered')
-        
+        # If we found a market table, process it
         if market_table:
+            # First, look at table headers to identify the right columns
+            headers = market_table.select('thead th')
+            header_texts = [h.text.strip().upper() for h in headers]
+            
+            # Try to identify column indices for ticker and price
+            ticker_col = None
+            price_col = None
+            
+            # Common column names for ticker and price
+            ticker_names = ['TICKER', 'SYMBOL', 'COUNTER', 'COMPANY', 'SECURITY']
+            price_names = ['PRICE', 'LAST PRICE', 'CLOSING PRICE', 'CURRENT PRICE', 'LTP']
+            
+            for i, header in enumerate(header_texts):
+                if any(name in header for name in ticker_names):
+                    ticker_col = i
+                if any(name in header for name in price_names):
+                    price_col = i
+            
+            # If we couldn't identify columns, guess based on common NSE layout
+            if ticker_col is None:
+                ticker_col = 0  # Usually first column
+            if price_col is None:
+                price_col = 5  # Common position for price
+            
+            # Now process rows
             rows = market_table.select('tbody tr')
             
             # Process each row to find our tickers
             for row in rows:
                 cells = row.select('td')
-                if len(cells) >= 7:  # Ensure row has enough cells
+                if len(cells) > max(ticker_col, price_col):  # Ensure row has enough cells
                     try:
-                        ticker = cells[0].text.strip()
+                        ticker = cells[ticker_col].text.strip()
                         
                         # Check if this ticker is in our list (case insensitive)
                         if ticker.upper() in [t.upper() for t in tickers]:
-                            # Extract current price
-                            last_price = float(cells[5].text.strip().replace(',', ''))
+                            # Extract current price (clean up non-numeric characters)
+                            price_text = cells[price_col].text.strip()
+                            # Convert "49.25" or "49,25" or "KES 49.25" to float
+                            price_text = price_text.replace(',', '').replace('KES', '').strip()
+                            last_price = float(price_text)
                             
                             # Today's date as the key
                             today = datetime.now().strftime('%Y-%m-%d')
@@ -200,13 +264,16 @@ def fetch_nse_current_prices(tickers):
                             if ticker not in current_data:
                                 current_data[ticker] = {}
                             current_data[ticker][today] = last_price
+                            
+                            print(f"Found price for {ticker}: {last_price}")
                     except (ValueError, IndexError) as e:
-                        print(f"Error parsing row for ticker {ticker}: {e}")
+                        print(f"Error parsing row for ticker: {e}")
                         continue
         
         # If the market page format has changed or no data found
         if not current_data:
             # Try the alternate NSE data source
+            print("No data found using primary method, trying alternate source...")
             return fetch_nse_data_alternate(tickers)
             
         return current_data
