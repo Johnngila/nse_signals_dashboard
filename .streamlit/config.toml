@@ -1,0 +1,13 @@
+[theme]
+primaryColor = "#1E88E5"  # Blue - matches your primary color
+backgroundColor = "#FAFAFA"  # Almost White - matches your background
+secondaryBackgroundColor = "#FFFFFF"  # White
+textColor = "#1E293B"  # Dark blue-gray - matches your heading color
+font = "sans serif"
+
+[server]
+enableCORS = false
+enableXsrfProtection = true
+
+[browser]
+gatherUsageStats = false

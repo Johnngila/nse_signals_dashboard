@@ -138,6 +138,17 @@ st.markdown("""
         height: 1px;
         background-color: #E0E0E0;
     }
+
+    /* Footer styling */
+    .footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.7);
+        font-size: 0.8rem;
+        border-top-left-radius: 0.5rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -179,3 +190,13 @@ def load_data(source, period_code, tickers):
 # Main content
 st.title("NSE Signals Dashboard")
 st.caption(f"Data as of {dt.datetime.now().strftime('%Y-%m-%d %H:%M')}")
+
+# Footer with GitHub link
+st.markdown(
+    """
+    <div class="footer">
+        <a href="https://github.com/Johnngila/nse_signals_dashboard" target="_blank">GitHub Repository</a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
