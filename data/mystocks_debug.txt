@@ -1,0 +1,391 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang=en>
+<head>
+<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+<title>Live Quotes and Feed, Portfolio Tools, Analysis, Research, News, Nairobi Securities Exchange</title>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<meta name=description content="Live Quotes and Feed, Portfolio Tools, Analysis, Research, News, Nairobi Securities Exchange">
+<meta name=keywords content="Live Quotes, Real-time, myStocks, Portfolio, Portfolio Manager, Portfolio Valuation, Market Analysis, Nairobi Securities Exchange, Stocks, Mobile">
+<meta property=fb:admins content=720111951>
+<meta property=fb:app_id content=132822503413695>
+<meta property=og:type content=website>
+<meta property=og:site_name content=myStocks>
+<link href="/favicon.ico" rel="shortcut icon">
+<link rel=stylesheet type='text/css' href='//cdn-ke.mystocks.co.ke/res/mystocks_core_$20240621014443.css'>
+<link rel=stylesheet type='text/css' href='//cdn-ke.mystocks.co.ke/res/homepage_$20240621014443.css'>
+<script nonce="3ecd354ec5604257cfa7a61152aa9f16" type="text/javascript">function loadAsyncScript(a,c,b){newScript=document.createElement("script");newScript.type="text/javascript";newScript.async=!0;newScript.src=a;b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(newScript,b)}function addEventHandler(a,c,b){a.addEventListener?a.addEventListener(c,b,!1):a.attachEvent&&("object"==typeof b&&b.handleEvent?(a.mystocksFunc=function(){this.handleEvent(event)}.bind(b),a.attachEvent("on"+c,a.mystocksFunc)):a.attachEvent("on"+c,b))}"live.mystocks.co.ke"==document.location.hostname&&(function(a,c,b,g,e,f,d){a.GoogleAnalyticsObject=e;a[e]=a[e]||function(){(a[e].q=a[e].q||[]).push(arguments)};a[e].l=1*new Date;f=c.createElement(b);d=c.getElementsByTagName(b)[0];f.async=1;f.src=g;d.parentNode.insertBefore(f,d)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),function(a){a=a.split(",",2);ga("create","UA-1008807-4","mystocks.co.ke");ga("set","dimension1",a[1]);+a[0]&&ga("set","&uid",a[0]);ga("require","GTM-WWDWHKL");ga("send","pageview")}("0,Not subscribed"));var __mslerrs=0,__msljs=[],msp_rl_cookie="";function __msljsld(a,c,b){if(c)__msljs[__msljs.length]=a;else{c=function(a,b){return a==b?0:a<b?-1:1};var g=__msljs.sort(c).join(",");if(a.split(",").sort(c).join(",")!=g)window.onerror(b+": Expected scripts ["+a+"] loaded ["+g+"]",document.location.href,0)}}window.onerror=function(a,c,b,g,e){var f="undefined"==typeof XMLHttpRequest?0:new XMLHttpRequest,d=window.encodeURIComponent;8>__mslerrs++&&f&&(f.open("GET","/jserrors.php?m="+d(a)+";s="+d(c)+";l="+parseInt(b)+("undefined"==typeof g?"":";c="+parseInt(g))+("undefined"==typeof e||"undefined"==typeof e.stack?"":";o="+d(e.stack))+";u="+d(window.location.href)+";r="+d(document.referrer)+";a="+d(navigator.userAgent)+";p="+d(navigator.platform),1),f.send(""))}</script><script nonce="3ecd354ec5604257cfa7a61152aa9f16" type='text/javascript'>loadAsyncScript('//cdn-ke.mystocks.co.ke/res/mystocks_core_$20240621014443.js');loadAsyncScript('//cdn-ke.mystocks.co.ke/res/homepage_$20240621014443.js')</script>
+<meta property=og:url content="https://live.mystocks.co.ke/">
+<meta property=og:image content="https://live.mystocks.co.ke/graphs/%5ENASI.Chart?r=90;f=d;t=avg;v=ovr;o=bb;sma=20;corp=1">
+<meta property=og:title content="Live Quotes and Feed, Portfolio Tools, Analysis, Research, News, Nairobi Securities Exchange">
+<meta property=og:description content="Subscribe to Nairobi Securities Exchange premier source of price quotes, historical data, news, market analytics and real-time decision support tools">
+<meta name=google-site-verification content=2YWyPkkvxtLuWvlfmvnm1ermnDD-SdtUjNKP4fSTv9E>
+<meta name=verify-v1 content="gn3ylkt0uC4g9yKk6KoPXp0pp5TqXTGeomj7yiHqSs0=">
+<meta name=y_key content=a04168cb0d3131e7>
+<meta name=msvalidate.01 content=A7EFB852A5E89F101F3D47694207B808>
+<meta name=alexaVerifyID content=Lb0MLjumGKUNkt8cqWO6wcEQ5Oo>
+<link rel=canonical href="https://live.mystocks.co.ke/" /></head>
+<body>
+<div id=mainbody align=center><div id=topStripDiv>
+<div id=topStrip>
+<a href="/index.php"><img id=msp_logo2 src="//cdn-ke.mystocks.co.ke/img/mystocks_mini.png" style=display:none height=20 width=87 alt=myStocks></a>
+<span id=navTitle></span>
+<img src="//cdn-ke.mystocks.co.ke/img/blank.gif" height=21 width=1 alt="">
+<div id=notifContainer style=display:inline>
+<img id=notifLoad src="//cdn-ke.mystocks.co.ke/img/ld2.gif" width=16 height=11 alt=Loading style=display:none>
+</div>
+<div id=payIcons>
+<img src="//cdn-ke.mystocks.co.ke/img/blank.gif" height=21 width=1 alt="">
+<a href="#email_info_at_mystocks" id=userFeedback class=dropDown onclick="return sendEmail('aW5mb0BteXN0b2Nrcy5jby5rZQ%3D%3D')" title="Email Feedback">Feedback</a> <input type=button class=btny value="" id=mpesaIcon title="We accept M-PESA on Paybill Number 400100" onclick="return aboutMPESA('non-member')">
+<input type=button class=btny value="" id=paypalIcon title="We accept PayPal" onclick="return aboutPayPal('non-member')">
+</div><div id=userRegisterDiv><img src="//cdn-ke.mystocks.co.ke/img/blank.gif" height=21 width=1 alt=""><a href="#" id=userRegister class=dropDown onclick="return registerNewUser(event)">Register</a></div>
+<div id=divlogin align=right onclick="event.cancelBubble=true">
+<form action="https://live.mystocks.co.ke/login/" method=post id=frmlogin onsubmit="return checkLogin(this,'username','password')">
+<input id=frmloginAction type=hidden name=action value="">
+<input type=hidden name=pg value="%2F">
+<table id=loginpane cellspacing=0 cellpadding=0>
+<tr><td><b>Login:</b>&nbsp;
+<td><input class=bginput placeholder="Login ID" size=24 maxlength=50 id=username style=width:162px name=email type=text value="Login ID">
+<input class=bginput placeholder=Password size=24 maxlength=50 id=password style=width:100px name=passwd type=password>
+<tr id=divlogin1 style=display:none><td>&nbsp;
+<td align=left><label for=qremember><input name=remember id=qremember type=checkbox value=1>&nbsp;Remember me</label>
+<tr id=divlogin2 style=display:none><td>&nbsp;
+<td align=left>
+<input class=btny type=submit name=login id=loginBtn value=Login>&nbsp;
+<input class=btnd type=submit name=forgot id=forgotPwdBtn value="Forgot Password" onclick="forgotPswdClk=true">&nbsp; &nbsp;
+<input class=btnd type=submit name=newuser id=newUserBtn value="New User?" onclick="return registerNewUser(event)">
+</table>
+</form>
+</div>
+&nbsp;
+</div>
+</div>
+<div align=left id=mainSized>
+<h1 id=title>Live Quotes and Feed, Portfolio Tools, Analysis, Research, News, Nairobi Securities Exchange</h1>
+<div id=logo>
+<a href="/index.php"><img id=msp_logo src="//cdn-ke.mystocks.co.ke/img/mystocks_on_black.png" height=46 width=200 alt=myStocks align=left></a>
+<a href="https://apps.apple.com/us/app/mystocks-ke/id1672469994?platform=iphone"><img id=msp_ios1 src="//cdn-ke.mystocks.co.ke/img/ios_appstore.png" alt="myStocks for iOS" height=40 width=120 align=right style=margin-left:10px></a>
+<a href="https://play.google.com/store/apps/details?id=ke.co.synergy.mystocks"><img id=msp_android1 src="//cdn-ke.mystocks.co.ke/img/android_playstore.png" alt="myStocks for Android" height=40 width=142 align=right style="border-radius:10px;border:solid 1px #777"></a>
+</div>
+<table id=navigatorTbl cellpadding=0 cellspacing=0>
+<tr>
+<td><img src="//cdn-ke.mystocks.co.ke/img/blank.gif" height=1 width=700 alt="">
+<div id=navigator>
+<a class=dropDown id=mnuMarket href="#">Market Watch</a>
+<a class=dropDown id=mnuResearch href="#">Opinion &amp; Commentary</a>
+<a class=dropDown id=mnuPortfolio href="#">Portfolio</a>
+<a class=dropDown id=mnuIndices href="#">Indices</a>
+<a class=dropDown id=mnuStocks href="#">Quotes</a>
+<a class=dropDown id=mnuHelp href="#">Help</a>
+</div>
+<td><img src="//cdn-ke.mystocks.co.ke/img/blank.gif" height=32 width=1 alt="">
+<td id=searchCell>
+<gcse:searchbox-only gname=gcse_msl enableHistory=true autoCompleteMaxCompletions=5 autoCompleteMatchType=any resultsUrl="https://live.mystocks.co.ke/search.php" queryParameterName=q></gcse:searchbox-only>
+</table>
+<div id=main> <script nonce="3ecd354ec5604257cfa7a61152aa9f16" type="text/javascript">addEventHandler(window,'load',function(){setTimeout(function(){reloadPage()},1800000)})</script>
+<div id=topPageAd align=left> <script nonce="3ecd354ec5604257cfa7a61152aa9f16" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="text/javascript"></script>
+<ins class=adsbygoogle style="display:inline-block;width:728px;height:90px" data-ad-client=ca-pub-3659683260119316 data-ad-slot=8661290056></ins>
+<script nonce="3ecd354ec5604257cfa7a61152aa9f16" type="text/javascript">(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
+<div id=mycds_ad></div>
+<script nonce="3ecd354ec5604257cfa7a61152aa9f16" type="text/javascript">var paymentCurrency="KES",paymentCurrencyTbl=[[100,500,1463,2850,5550],[100,1000,2925,5700,11100],[0,2000,5850,11400,22200]];function currencyConv(aCurrency,num,dec){if((aCurrency=="KES")||!num)return formatNumber(num,dec);var i,cur=['EUR',147.262,'GBP',172.958,'KES',1,'USD',130.28];for(i=0;i<cur.length;i+=2)if(cur[i]==aCurrency){return formatNumber((parseFloat("1.09665675")*num)/ cur[i+1],dec)}return formatNumber(num,dec)}</script>
+<div id=hpRightPane>
+<h3 class=top>Corporate Actions Outlook</h3>
+<div id=hpEvents><div title="Stanbic Holdings Plc"><span class=hpEvent><a href="/stock=SBIC">SBIC</a> Book closure KES 18.90 final dividend</span> <span class=hpStamp>May 16 2025</span></div>
+<div title="Standard Chartered Bank Kenya Ltd"><span class=hpEvent><a href="/stock=SCBK">SCBK</a> Book closure KES 37.00 final dividend</span> <span class=hpStamp>Apr 30 2025</span></div>
+<div title="NCBA Group Plc"><span class=hpEvent><a href="/stock=NCBA">NCBA</a> Book closure KES 3.25 final dividend</span> <span class=hpStamp>Apr 30 2025</span></div>
+<div title="Laptrust Imara Income-REIT"><span class=hpEvent><a href="/stock=LAPR">LAPR</a> Payment of KES 0.82 final dividend</span> <span class=hpStamp>Apr 30 2025</span></div>
+<div title="East African Breweries Ltd"><span class=hpEvent><a href="/stock=EABL">EABL</a> Payment of KES 2.50 interim dividend</span> <span class=hpStamp>Apr 30 2025</span></div>
+<div title="ABSA Bank Kenya Plc"><span class=hpEvent><a href="/stock=ABSA">ABSA</a> Book closure KES 1.55 final dividend</span> <span class=hpStamp>Apr 30 2025</span></div>
+<div title="ABSA Bank Kenya Plc"><span class=hpEvent><a href="/stock=ABSA">ABSA</a> Book closure KES 1.75 final dividend</span> <span class=hpStamp>Apr 30 2025</span></div>
+<div title="Co-operative Bank of Kenya Ltd"><span class=hpEvent><a href="/stock=COOP">COOP</a> Book closure KES 1.50 final dividend</span> <span class=hpStamp>Apr 28 2025</span></div>
+<div title="CIC Insurance Group Ltd"><span class=hpEvent><a href="/stock=CIC">CIC</a> Book closure KES 0.13 first and final dividend</span> <span class=hpStamp>Apr 22 2025</span></div>
+<div title="I &amp; M Holdings Plc"><span class=hpEvent><a href="/stock=IMH">IMH</a> Book closure KES 1.70 final dividend</span> <span class=hpStamp>Apr 16 2025</span></div>
+<div title="Kenya Power and Lighting Company Plc"><span class=hpEvent><a href="/stock=KPLC">KPLC</a> Payment of KES 0.20 interim dividend</span> <span class=hpStamp>Apr 11 2025</span></div>
+<div title="Jubilee Holdings Ltd"><span class=hpEvent><a href="/stock=JUB">JUB</a> Announced a KES 11.50 final dividend</span> <span class=hpStamp>Apr 04 2025</span></div>
+<div title="KCB Group Plc"><span class=hpEvent><a href="/stock=KCB">KCB</a> Book closure KES 1.50 final dividend</span> <span class=hpStamp>Apr 03 2025</span></div>
+<div title="Laptrust Imara Income-REIT"><span class=hpEvent><a href="/stock=LAPR">LAPR</a> Book closure KES 0.82 final dividend</span> <span class=hpStamp>Apr 02 2025</span></div>
+<div title="Safaricom Plc"><span class=hpEvent><a href="/stock=SCOM">SCOM</a> Payment of KES 0.55 interim dividend</span> <span class=hpStamp>Mar 31 2025</span></div>
+<div title="East African Portland Cement Ltd"><span class=hpEvent><a href="/stock=PORT">PORT</a> Payment of KES 1.00 first and final dividend</span> <span class=hpStamp>Mar 31 2025</span></div>
+<div title="Nairobi Securities Exchange Plc"><span class=hpEvent><a href="/stock=NSE">NSE</a> Announced a KES 0.32 first and final dividend</span> <span class=hpStamp>Mar 28 2025</span></div>
+<div title="CIC Insurance Group Ltd"><span class=hpEvent><a href="/stock=CIC">CIC</a> Announced a KES 0.13 first and final dividend</span> <span class=hpStamp>Mar 28 2025</span></div>
+<div title="Laptrust Imara Income-REIT"><span class=hpEvent><a href="/stock=LAPR">LAPR</a> Announced a KES 0.82 final dividend</span> <span class=hpStamp>Mar 27 2025</span></div>
+<div title="Equity Group Holdings Plc"><span class=hpEvent><a href="/stock=EQTY">EQTY</a> Announced a KES 4.25 final dividend</span> <span class=hpStamp>Mar 27 2025</span></div>
+<div title="NCBA Group Plc"><span class=hpEvent><a href="/stock=NCBA">NCBA</a> Announced a KES 3.25 final dividend</span> <span class=hpStamp>Mar 26 2025</span></div>
+<div title="I &amp; M Holdings Plc"><span class=hpEvent><a href="/stock=IMH">IMH</a> Announced a KES 1.70 final dividend</span> <span class=hpStamp>Mar 26 2025</span></div>
+<div title="Diamond Trust Bank Kenya Ltd"><span class=hpEvent><a href="/stock=DTK">DTK</a> Announced a KES 7.00 final dividend</span> <span class=hpStamp>Mar 26 2025</span></div>
+<div title="Kakuzi Plc"><span class=hpEvent><a href="/stock=KUKZ">KUKZ</a> Announced a KES 8.00 final dividend</span> <span class=hpStamp>Mar 25 2025</span></div>
+<div title="Co-operative Bank of Kenya Ltd"><span class=hpEvent><a href="/stock=COOP">COOP</a> Announced a KES 1.50 final dividend</span> <span class=hpStamp>Mar 20 2025</span></div>
+<div title="ABSA Bank Kenya Plc"><span class=hpEvent><a href="/stock=ABSA">ABSA</a> Announced a KES 1.55 final dividend</span> <span class=hpStamp>Mar 20 2025</span></div>
+<div title="ABSA Bank Kenya Plc"><span class=hpEvent><a href="/stock=ABSA">ABSA</a> Announced a KES 1.75 final dividend</span> <span class=hpStamp>Mar 20 2025</span></div>
+<div title="Standard Chartered Bank Kenya Ltd"><span class=hpEvent><a href="/stock=SCBK">SCBK</a> Announced a KES 37.00 final dividend</span> <span class=hpStamp>Mar 19 2025</span></div>
+<div title="KCB Group Plc"><span class=hpEvent><a href="/stock=KCB">KCB</a> Announced a KES 1.50 final dividend</span> <span class=hpStamp>Mar 13 2025</span></div>
+<div title="Stanbic Holdings Plc"><span class=hpEvent><a href="/stock=SBIC">SBIC</a> Announced a KES 18.90 final dividend</span> <span class=hpStamp>Mar 05 2025</span></div>
+<div title="Safaricom Plc"><span class=hpEvent><a href="/stock=SCOM">SCOM</a> Book closure KES 0.55 interim dividend</span> <span class=hpStamp>Mar 03 2025</span></div>
+<div title="East African Portland Cement Ltd"><span class=hpEvent><a href="/stock=PORT">PORT</a> Payment of KES 1.00 first and final dividend</span> <span class=hpStamp>Feb 28 2025</span></div>
+<div title="Kenya Power and Lighting Company Plc"><span class=hpEvent><a href="/stock=KPLC">KPLC</a> Book closure KES 0.20 interim dividend</span> <span class=hpStamp>Feb 28 2025</span></div>
+<div title="British American Tobacco Kenya Plc"><span class=hpEvent><a href="/stock=BAT">BAT</a> Announced a KES 45.00 final dividend</span> <span class=hpStamp>Feb 24 2025</span></div>
+<div title="British American Tobacco Kenya Plc"><span class=hpEvent><a href="/stock=BAT">BAT</a> Announced a KES 50.00 final dividend</span> <span class=hpStamp>Feb 24 2025</span></div>
+<div title="East African Breweries Ltd"><span class=hpEvent><a href="/stock=EABL">EABL</a> Book closure KES 2.50 interim dividend</span> <span class=hpStamp>Feb 21 2025</span></div>
+<div title="Safaricom Plc"><span class=hpEvent><a href="/stock=SCOM">SCOM</a> Announced a KES 0.55 interim dividend</span> <span class=hpStamp>Feb 13 2025</span></div>
+<div title="Kenya Electricity Generating Company Plc"><span class=hpEvent><a href="/stock=KEGN">KEGN</a> Payment of KES 0.65 first and final dividend</span> <span class=hpStamp>Feb 13 2025</span></div>
+<div title="Kenya Electricity Generating Company Plc"><span class=hpEvent><a href="/stock=KEGN">KEGN</a> Payment of KES 0.65 first and final dividend</span> <span class=hpStamp>Feb 13 2025</span></div>
+<div title="Kenya Power and Lighting Company Plc"><span class=hpEvent><a href="/stock=KPLC">KPLC</a> Payment of KES 0.70 final dividend</span> <span class=hpStamp>Jan 31 2025</span></div>
+<div title="Kenya Power and Lighting Company Plc"><span class=hpEvent><a href="/stock=KPLC">KPLC</a> Announced a KES 0.20 interim dividend</span> <span class=hpStamp>Jan 30 2025</span></div>
+<div title="East African Breweries Ltd"><span class=hpEvent><a href="/stock=EABL">EABL</a> Announced a KES 2.50 interim dividend</span> <span class=hpStamp>Jan 20 2025</span></div>
+<div title="I &amp; M Holdings Plc"><span class=hpEvent><a href="/stock=IMH">IMH</a> Payment of KES 1.30 interim dividend</span> <span class=hpStamp>Jan 14 2025</span></div>
+<div title="East African Portland Cement Ltd"><span class=hpEvent><a href="/stock=PORT">PORT</a> Book closure KES 1.00 first and final dividend</span> <span class=hpStamp>Dec 31 2024</span></div>
+<div title="East African Portland Cement Ltd"><span class=hpEvent><a href="/stock=PORT">PORT</a> Book closure KES 1.00 first and final dividend</span> <span class=hpStamp>Dec 31 2024</span></div>
+<div title="Carbacid Investments Plc"><span class=hpEvent><a href="/stock=CARB">CARB</a> Payment of KES 1.70 final dividend</span> <span class=hpStamp>Dec 18 2024</span></div>
+<div title="BOC Kenya Plc"><span class=hpEvent><a href="/stock=BOC">BOC</a> Payment of KES 6.05 final dividend</span> <span class=hpStamp>Dec 18 2024</span></div>
+<div title="I &amp; M Holdings Plc"><span class=hpEvent><a href="/stock=IMH">IMH</a> Book closure KES 1.30 interim dividend</span> <span class=hpStamp>Dec 16 2024</span></div>
+<div title="Centum Investment Company Plc"><span class=hpEvent><a href="/stock=CTUM">CTUM</a> Payment of KES 0.32 final dividend</span> <span class=hpStamp>Dec 13 2024</span></div>
+<div title="Kenya Power and Lighting Company Plc"><span class=hpEvent><a href="/stock=KPLC">KPLC</a> Book closure KES 0.70 final dividend</span> <span class=hpStamp>Dec 02 2024</span></div>
+<div title="Kenya Electricity Generating Company Plc"><span class=hpEvent><a href="/stock=KEGN">KEGN</a> Book closure KES 0.65 first and final dividend</span> <span class=hpStamp>Nov 29 2024</span></div>
+<div title="East African Portland Cement Ltd"><span class=hpEvent><a href="/stock=PORT">PORT</a> Announced a KES 1.00 first and final dividend</span> <span class=hpStamp>Nov 28 2024</span></div>
+<div title="East African Portland Cement Ltd"><span class=hpEvent><a href="/stock=PORT">PORT</a> Announced a KES 1.00 first and final dividend</span> <span class=hpStamp>Nov 28 2024</span></div>
+<div title="Kenya Electricity Generating Company Plc"><span class=hpEvent><a href="/stock=KEGN">KEGN</a> Book closure KES 0.65 first and final dividend</span> <span class=hpStamp>Nov 28 2024</span></div>
+<div title="Carbacid Investments Plc"><span class=hpEvent><a href="/stock=CARB">CARB</a> Book closure KES 1.70 final dividend</span> <span class=hpStamp>Nov 26 2024</span></div>
+<div title="I &amp; M Holdings Plc"><span class=hpEvent><a href="/stock=IMH">IMH</a> Announced a KES 1.30 interim dividend</span> <span class=hpStamp>Nov 20 2024</span></div>
+</div>
+<div id=hpInPageAd> <script nonce="3ecd354ec5604257cfa7a61152aa9f16" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="text/javascript"></script>
+<ins class=adsbygoogle style="display:inline-block;width:336px;height:280px" data-ad-client=ca-pub-3659683260119316 data-ad-slot=3131906058></ins>
+<script nonce="3ecd354ec5604257cfa7a61152aa9f16" type="text/javascript">(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
+<h3>MyStocks Exclusive</h3>
+<div id=mslExclusive>
+<div class=mslStep id=hpStep1>
+<div class=icon>&nbsp;</div>
+<div class=mslStepIn>
+<h4><a href="#" onclick="return registerNewUser(event)">Subscribe to myStocks</a></h4>
+<b>&bull;</b>&nbsp;Get the most out of myStocks by subscribing
+<b>&bull;</b>&nbsp;Enjoy upto 7.5% discount on annual subscriptions
+</div>
+</div>
+<div class=mslStep id=hpStep2>
+<div class=icon>&nbsp;</div>
+<div class=mslStepIn>
+<h4><a href="/rmw.php">Real-time Quotes and Charts</a></h4>
+<b>&bull;</b> Real-time NSE Market Viewer
+<b>&bull;</b> Level 2 market depth data
+<b>&bull;</b> Historical charts &amp; data
+<b>&bull;</b> Sortable columns
+<b>&bull;</b> Customizable views
+</div>
+</div>
+<div class=mslStep id=hpStep3>
+<div class=icon>&nbsp;</div>
+<div class=mslStepIn>
+<h4><a href="/research/">Market Research</a></h4>
+<b>&bull;</b> Independent analysts' research
+<b>&bull;</b> Company financials, ratios and fundamentals
+<b>&bull;</b> Technical analysis trends and signals
+</div>
+</div>
+</div>
+<table id=hpFeatureTable border=0 cellspacing=0 cellpadding=0>
+<tr class=row>
+<td class=nm width=><b>Feature Matrix</b>
+<th class=n>Standard
+<th class=n title=Professional>PRO
+<th class=n>Corporate
+<tr class=row><td class=nm>Realtime quotes<td class=n><div class=f>&nbsp;</div><td class=n><div class=f>&nbsp;</div><td class=n><div class=f>&nbsp;</div>
+<tr class=row><td class=nm>Linked CDS account<td class=n><div class=f>&nbsp;</div><td class=n><div class=f>&nbsp;</div><td class=n><div class=f>&nbsp;</div>
+<tr class=row><td class=nm>Level 2 market data<td class=n><div class=e>&nbsp;</div><td class=n><div class=f>&nbsp;</div><td class=n><div class=f>&nbsp;</div>
+<tr class=row><td class=nm>Intraday charts<td class=n><div class=e>&nbsp;</div><td class=n><div class=f>&nbsp;</div><td class=n><div class=f>&nbsp;</div>
+<tr class=row><td class=nm>18-year+ Historical data<td class=n><div class=e>&nbsp;</div><td class=n><div class=f>&nbsp;</div><td class=n><div class=f>&nbsp;</div>
+<tr class=row><td class=nm>Financials &amp; ratios<td class=n><div class=e>&nbsp;</div><td class=n title=Partial><div class=h>&nbsp;</div><td class=n><div class=f>&nbsp;</div>
+<tr class=row><td class=nm>Technical analysis<td class=n><div class=e>&nbsp;</div><td class=n title=Partial><div class=h>&nbsp;</div><td class=n><div class=f>&nbsp;</div>
+<tr class=row><td class=nm>Raw data download<td class=n><div class=e>&nbsp;</div><td class=n><div class=e>&nbsp;</div><td class=n><div class=f>&nbsp;</div>
+</table>
+</div>
+<div id=hpHighlights>
+<h4>
+Nairobi Securities Exchange Highlights &nbsp; <span class=timeStamp><b id=hpMarketStatus>&nbsp;</b> &#8212; <span id=hpTimeStamp>&nbsp;</span></span>
+&nbsp; &nbsp;<img id=load src="//cdn-ke.mystocks.co.ke/img/ld.gif" alt=Loading width=16 height=16 style='vertical-align:middle;float:right'>
+</h4>
+<div class=column33>
+<table id=hpTrendGainers cellspacing=0 cellpadding=0>
+<tr class=col33header><td class=hname>Gainers<td>Price<td>Change
+<tr class=row><td id=hpG0a class=nm>&nbsp;<td id=hpG0b class=n>&nbsp;<td id=hpG0c class=n>&nbsp;<tr class=row><td id=hpG1a class=nm>&nbsp;<td id=hpG1b class=n>&nbsp;<td id=hpG1c class=n>&nbsp;<tr class=row><td id=hpG2a class=nm>&nbsp;<td id=hpG2b class=n>&nbsp;<td id=hpG2c class=n>&nbsp;<tr class=row><td id=hpG3a class=nm>&nbsp;<td id=hpG3b class=n>&nbsp;<td id=hpG3c class=n>&nbsp;<tr class=row><td id=hpG4a class=nm>&nbsp;<td id=hpG4b class=n>&nbsp;<td id=hpG4c class=n>&nbsp;</table>
+</div>
+<div class=column33>
+<table id=hpTrendLosers cellspacing=0 cellpadding=0>
+<tr class=col33header><td class=hname>Losers<td>Price<td>Change
+<tr class=row><td id=hpL0a class=nm>&nbsp;<td id=hpL0b class=n>&nbsp;<td id=hpL0c class=n>&nbsp;<tr class=row><td id=hpL1a class=nm>&nbsp;<td id=hpL1b class=n>&nbsp;<td id=hpL1c class=n>&nbsp;<tr class=row><td id=hpL2a class=nm>&nbsp;<td id=hpL2b class=n>&nbsp;<td id=hpL2c class=n>&nbsp;<tr class=row><td id=hpL3a class=nm>&nbsp;<td id=hpL3b class=n>&nbsp;<td id=hpL3c class=n>&nbsp;<tr class=row><td id=hpL4a class=nm>&nbsp;<td id=hpL4b class=n>&nbsp;<td id=hpL4c class=n>&nbsp;</table>
+</div>
+<div class=column33 style="background:none;margin-right:0">
+<table id=hpTrendMovers cellspacing=0 cellpadding=0>
+<tr class=col33header><td class=hname>Movers<td>Volume<td><abbr title="Market Capitalization">Mkt.Cap</abbr>
+<tr class=row><td id=hpM0a class=nm>&nbsp;<td id=hpM0b class=n>&nbsp;<td id=hpM0c class=n>&nbsp;<tr class=row><td id=hpM1a class=nm>&nbsp;<td id=hpM1b class=n>&nbsp;<td id=hpM1c class=n>&nbsp;<tr class=row><td id=hpM2a class=nm>&nbsp;<td id=hpM2b class=n>&nbsp;<td id=hpM2c class=n>&nbsp;<tr class=row><td id=hpM3a class=nm>&nbsp;<td id=hpM3b class=n>&nbsp;<td id=hpM3c class=n>&nbsp;<tr class=row><td id=hpM4a class=nm>&nbsp;<td id=hpM4b class=n>&nbsp;<td id=hpM4c class=n>&nbsp;</table>
+</div>
+</div>
+<div id=chartsAndNews>
+<div id=otherNews>
+<h2>Financial News Headlines</h2>
+<div id=otherNewsDiv><div class=newsHead><a href='/news=4548348' target=_blank>Banks oppose CBK plan to peg lending to Central Bank Rate, cite credit access risks</a> <span><i>The Eastleigh Voice</i> <u>Fri, 2:15 pm</u></span></div><div class=newsHead><a href='/news=4547307' target=_blank>Relief for struggling borrowers as Absa restructures $26m loans</a> <span><i>The EastAfrican</i> <u>Fri, 1:00 pm</u></span></div><div class=newsHead><a href='/news=4545117' target=_blank>Kenyan banks reject Central Bank&rsquo;s new loan pricing model</a> <span><i>TechCabal</i> <u>Thu, 6:48 pm</u></span></div><div class=newsHead><a href='/news=4545118' target=_blank>Standoff as Banks Completely Reject CBK Proposal on Interest Rates on Loans</a> <span><i>The Kenya Times</i> <u>Thu, 9:19 am</u></span></div><div class=newsHead><a href='/news=4544873' target=_blank>Nairobi Securities Exchange to launch digital platform to trade tokenized real-world assets</a> <span><i>Mariblock</i> <u>Wed, 6:39 pm</u></span></div><div class=newsHead><a href='/news=4545093' target=_blank>Kenya moves to modernise investment, pest control laws</a> <span><i>The Eastleigh Voice</i> <u>Wed, 6:32 am</u></span></div><div class=newsHead><a href='/news=4544004' target=_blank>Cabinet lifts shareholder caps to attract more investment in Capital Markets</a> <span><i>The Eastleigh Voice</i> <u>Wed, 6:32 am</u></span></div><div class=newsHead><a href='/news=4541555' target=_blank>Kenya rules out return to global debt markets in 2025 on rising yields</a> <span><i>Business Daily</i> <u>Tue, 8:45 pm</u></span></div><div class=newsHead><a href='/news=4540753' target=_blank>Central Bank of Kenya Opens Applications for 2025 Internship Program</a> <span><i>Techish Kenya</i> <u>Tue, 8:18 am</u></span></div><div class=newsHead><a href='/news=4540754' target=_blank>Kenyan Central Bank plans buying Gold</a> <span><i>FXLeaders</i> <u>Tue, 7:20 am</u></span></div><div class=newsHead><a href='/news=4544006' target=_blank>Dividend freeze looms as banks race to boost capital</a> <span><i>Business Daily</i> <u>Mon, 10:30 pm</u></span></div><div class=newsHead><a href='/news=4538303' target=_blank>Nairobi Securities Exchange to Open Kenya Digital Exchange</a> <span><i>Markets Media</i> <u>Mon, 11:36 am</u></span></div><div class=newsHead><a href='/news=4538570' target=_blank>👨🏿&zwj;🚀TechCabal Daily &ndash; Kenya goes for gold</a> <span><i>TechCabal</i> <u>Mon, 9:31 am</u></span></div><div class=newsHead><a href='/news=4538263' target=_blank>IMF sets tough conditions for fresh Kenya funding</a> <span><i>Business Daily</i> <u>Apr 27</u></span></div><div class=newsHead><a href='/news=4530811' target=_blank>Experts claim central bank digital currency can curb financial crime</a> <span><i>Daily Nation</i> <u>Apr 26</u></span></div><div class=newsHead><a href='/news=4528633' target=_blank>Central Bank of Kenya announces intern job openings for Kenyans: &quot;Apply by May 16&quot;</a> <span><i>MSN</i> <u>Apr 25</u></span></div><div class=newsHead><a href='/news=4538552' target=_blank>Central Bank of Kenya (CBK) Internship Programme 2025 for young Kenyan graduates.</a> <span><i>Opportunities For Africans</i> <u>Apr 25</u></span></div><div class=newsHead><a href='/news=4528632' target=_blank>SRC controversy casts shadow over Moturi&#039;s Central Bank board nomination</a> <span><i>The Eastleigh Voice</i> <u>Apr 25</u></span></div><div class=newsHead><a href='/news=4528683' target=_blank>Kenya set to surpass Ethiopia as East Africa&rsquo;s largest economy in 2025 &ndash; IMF</a> <span><i>MSN</i> <u>Apr 25</u></span></div><div class=newsHead><a href='/news=4531910' target=_blank>Apply now: CBK invites applications for internship job positions in May</a> <span><i>Tuko News</i> <u>Apr 25</u></span></div><div class=newsHead><a href='/news=4528641' target=_blank>Central Banks Are Expected to Increase Gold Reserves, Kenyan Central Bank Governor Voices Support</a> <span><i>NAI500</i> <u>Apr 25</u></span></div><div class=newsHead><a href='/news=4531912' target=_blank>CBK Announces One Year Internship Program for Degree Holders</a> <span><i>The Kenya Times</i> <u>Apr 25</u></span></div><div class=newsHead><a href='/news=4528634' target=_blank>CBK Announces Internship Opportunities; How to Apply</a> <span><i>Nairobi Leo</i> <u>Apr 25</u></span></div><div class=newsHead><a href='/news=4527541' target=_blank>Kenya&rsquo;s Central Bank Considers Adding Gold to Reserves Amid Record Rally</a> <span><i>Kenyan Wall Street</i> <u>Apr 25</u></span></div><div class=newsHead><a href='/news=4530067' target=_blank>Central Bank pressures 13 banks to meet Sh10 billion core capital requirement</a> <span><i>The Eastleigh Voice</i> <u>Apr 24</u></span></div><div class=newsHead><a href='/news=4525397' target=_blank>Kenya Central Bank is &lsquo;Actively Considering&rsquo; Buying Gold</a> <span><i>Bloomberg</i> <u>Apr 24</u></span></div><div class=newsHead><a href='/news=4525399' target=_blank>Kenya Central Bank&rsquo;s Thugge on IMF Funding, Gold, Tariff Impact</a> <span><i>Bloomberg</i> <u>Apr 24</u></span></div><div class=newsHead><a href='/news=4522170' target=_blank>Central Bank of Kenya releases indicative exchange rates for April 23, 2025</a> <span><i>TV47 Digital</i> <u>Apr 23</u></span></div><div class=newsHead><a href='/news=4522171' target=_blank>Kenya to scrap risk-based loan pricing in push for lower interest rates</a> <span><i>TechCabal</i> <u>Apr 23</u></span></div><div class=newsHead><a href='/news=4521915' target=_blank>TOKENIZATION | Nairobi Securities Exchange (NSE) to Launch Regulated Digital Assets Exchange and Tokenization Platform in Kenya</a> <span><i>BitKE</i> <u>Apr 23</u></span></div><div class=newsHead><a href='/news=4521078' target=_blank>CBK Proposes Policy Rate as New Bank Lending Reference</a> <span><i>Kenyan Wall Street</i> <u>Apr 23</u></span></div><div class=newsHead><a href='/news=4518649' target=_blank>Kenya Partners with Canadian Firms to Launch Blockchain-Powered Digital Exchange</a> <span><i>Condia</i> <u>Apr 22</u></span></div><div class=newsHead><a href='/news=4534141' target=_blank>List of top Kenyan banks and interest rates on loans after CBK lowered lending rate</a> <span><i>MSN</i> <u>Apr 22</u></span></div><div class=newsHead><a href='/news=4525370' target=_blank>CBK eyes Sh80bn from bond sale to fund big May payment</a> <span><i>Business Daily</i> <u>Apr 21</u></span></div><div class=newsHead><a href='/news=4515385' target=_blank>DeFi Technologies And SovFi Partner With Nairobi Securities Exchange To Design And Launch Kenya Digital Exchange (Kdx)</a> <span><i>marketscreener.com</i> <u>Apr 21</u></span></div><div class=newsHead><a href='/news=4515384' target=_blank>Major African Crypto Exchange Launch: DeFi Technologies Taps $18.6B Kenya Market with NSE Partnership</a> <span><i>Stock Titan</i> <u>Apr 21</u></span></div><div class=newsHead><a href='/news=4499470' target=_blank>10 worst performing companies on NSE as Kenya&#039;s stock value drops below KSh 2 trillion</a> <span><i>MSN</i> <u>Apr 17</u></span></div><div class=newsHead><a href='/news=4499673' target=_blank>Central Bank of Kenya opens bidding for KSh 80 billion in April-May bond sale</a> <span><i>MSN</i> <u>Apr 17</u></span></div><div class=newsHead><a href='/news=4499670' target=_blank>Central Bank to lift moratorium on licensing new banks</a> <span><i>Kenya News Agency</i> <u>Apr 17</u></span></div><div class=newsHead><a href='/news=4499669' target=_blank>Open bids: CBK states money Kenyans need to invest in new KSh 80b bond sale</a> <span><i>Tuko News</i> <u>Apr 17</u></span></div><div class=newsHead><a href='/news=4499695' target=_blank>Kenya central bank to lift moratorium on new commercial bank licenses</a> <span><i>TimesLIVE</i> <u>Apr 17</u></span></div><div class=newsHead><a href='/news=4541877' target=_blank>CBK Reveals Products Whose Prices Will Go Up</a> <span><i>Kenyans.co.ke</i> <u>Apr 17</u></span></div><div class=newsHead><a href='/news=4528602' target=_blank>Treasury, CMA line up board to unlock Islamic funds</a> <span><i>Business Daily</i> <u>Apr 17</u></span></div><div class=newsHead><a href='/news=4499672' target=_blank>Central Bank of Kenya lifts 10-year ban on new bank licences</a> <span><i>Techpoint Africa</i> <u>Apr 17</u></span></div><div class=newsHead><a href='/news=4499640' target=_blank>ETI Gets Capital Markets Authority Nod to Open Investment Bank in Kenya</a> <span><i>Proshare</i> <u>Apr 17</u></span></div><div class=newsHead><a href='/news=4509178' target=_blank>CBK to lift 10-year ban on licensing new banks in July 2025</a> <span><i>standardmedia.co.ke</i> <u>Apr 17</u></span></div><div class=newsHead><a href='/news=4496431' target=_blank>CBK ends decade-long freeze on licensing new banks</a> <span><i>Business Daily</i> <u>Apr 16</u></span></div><div class=newsHead><a href='/news=4496434' target=_blank>CBK lifts 9-year ban on licensing new commercial banks</a> <span><i>People Daily</i> <u>Apr 16</u></span></div><div class=newsHead><a href='/news=4496430' target=_blank>CBK to Lift Moratorium on Licensing New Commercial Banks in Kenya from July 1, 2025</a> <span><i>Techish Kenya</i> <u>Apr 16</u></span></div><div class=newsHead><a href='/news=4499671' target=_blank>Govt Gives Directive to New Banks After Lifting 9-Year Ban</a> <span><i>Kenyans.co.ke</i> <u>Apr 16</u></span></div></div>
+</div>
+<div class=mTabs>
+<ul>
+<li id=idxC1 class=selected><a href="#" onclick="return mTabsFunc('idxC','idxD',1,3)"><b><b><b><abbr title="NSE All-Share Index"><small>All-Share</small></abbr></b></b></b></a></li>
+<li id=idxC2><a href="#" onclick="return mTabsFunc('idxC','idxD',2,3)"><b><b><b><abbr title="NSE 20-Share Index"><small>20-Share</small></abbr></b></b></b></a></li>
+<li id=idxC3><a href="#" onclick="return mTabsFunc('idxC','idxD',3,3)"><b><b><b><abbr title="NSE 25-Share Index"><small>25-Share</small></abbr></b></b></b></a></li>
+</ul>
+</div>
+<div id=hpIndices>
+<div id=idxD1>
+<img src="/graphs/nasi.php" width=270 height=150 alt="NSE All Share Index">
+<table>
+<tr class=row title="NSE All Share Index">
+<td class=nm><a href="/stock=^NASI" title="NSE All Share Index">^NASI</a>
+<td class=n>125.60<td class="n c1">0.48<td class="n c1">0.38%</table>
+</div>
+<div id=idxD2 style=display:none>
+<img src="/graphs/n20i.php" width=270 height=150 alt="NSE 20-Share Index">
+<table>
+<tr class=row title="NSE 20-Share Index">
+<td class=nm><a href="/stock=^N20I" title="NSE 20-Share Index">^N20I</a>
+<td class=n>2,106.31<td class="n c1">29.20<td class="n c1">1.37%</table>
+</div>
+<div id=idxD3 style=display:none>
+<img src="/graphs/n25i.php" width=270 height=150 alt="NSE 25-Share Index">
+<table>
+<tr class=row title="NSE 25-Share Index">
+<td class=nm><a href="/stock=^N25I" title="NSE 25-Share Index">^N25I</a>
+<td class=n>3,378.62<td class="n c1">34.01<td class="n c1">1.00%</table>
+</div>
+</div>
+</div>
+<div id=blogBody>
+<h4>Opinion and Commentary</h4><div class=archive>
+<img class=thumb src="/research/thumbs/media_stocks.png" width=120 height=90 alt="" title=""><div class=item>
+<a class=header href="/research/123+What+s+causing+media+stocks+to+dwindle">What's causing media stocks to dwindle?</a>
+<small class=date>22 Feb 2019</small>
+<div>The uncertainty of an open digital market was not reassuring to investors. With a camera and a channel, anyone can start a TV station and broadcast on the digital platform. The quality difference would not be different.</div>
+</div>
+</div>
+<div class=archive>
+<img class=thumb src="/research/thumbs/stock_market_decline.jpg" width=120 height=65 alt="" title=""><div class=item>
+<a class=header href="/research/122+Surviving+era+of+profit+warnings+and+price+losses">Surviving era of profit warnings and price losses</a>
+<small class=date>06 Feb 2019</small>
+<div>The economy is partly struggling because of excessive importation of cheaper goods. Chinese contractors come with their equipment, materials, cement and labour. Local manufacturers struggle to compete with Chinese products. It's a ruthless battle and battles are costly.</div>
+</div>
+</div>
+<div class=archive>
+<img class=thumb src="/research/thumbs/electricity_generation.jpg" width=120 height=78 alt="" title=""><div class=item>
+<a class=header href="/research/121+Powered+to+fail+The+paradox+of+big+projects+excess+power+and+high+power+costs">Powered to fail: The paradox of big projects, excess power and high power costs</a>
+<small class=date>30 Jan 2019</small>
+<div>Kenya has a total installed capacity of 2300 MW. However, the country consumes only 1800 MW. About 500 MW remains unused or is lost in transmission. Elementary economics would suggest that because power is in excess, therefore it should be cheaper to consumers. But this is hardly the case.</div>
+</div>
+</div>
+<div class=archive>
+<img class=thumb src="/research/thumbs/tech_changing_biz.jpg" width=120 height=69 alt="" title=""><div class=item>
+<a class=header href="/research/110+Four+Digital+Trends+Changing+the+Banking+Industry">Four Digital Trends Changing the Banking Industry</a>
+<small class=date>17 May 2018</small>
+<div>The financial sector has evolved over the years with new technologies being introduced in the industry. In Kenya competition on who comes up with the next best application is changing our view of banks.</div>
+</div>
+</div>
+<div class=archive>
+<img class=thumb src="/research/thumbs/mpesa_agent.jpg" width=120 height=60 alt="" title=""><div class=item>
+<a class=header href="/research/111+Silver+lining+in+the+Safaricom+split+narrative">Silver lining in the Safaricom split narrative</a>
+<small class=date>03 May 2017</small>
+<div>A split means that telephone services are offered by one firm while financial services are offered by another. It will empower m-pesa to fight competition, capture larger markets and deliver value</div>
+</div>
+</div>
+<div class=archive>
+<img class=thumb src="/research/thumbs/2017_04_equity.jpg" width=120 height=61 alt="" title=""><div class=item>
+<a class=header href="/research/109+Equity+Bank+is+strong+but+with+an+Achilles+heel">Equity Bank is strong but with an Achilles heel</a>
+<small class=date>13 Apr 2017</small>
+<div>Equity bank is the largest bank in Kenya by customer deposits and the best bank in the world in terms of return on assets. Its success came from strategy to go for the bottom of the pyramid. The greatest threat to equity Bank is poor customer service, but it still is a strong investment destination</div>
+</div>
+</div>
+<div class=archive>
+<img class=thumb src="/research/thumbs/safaricom_1.jpg" width=120 height=61 alt="" title=""><div class=item>
+<a class=header href="/research/108+Safaricom+Value+Investing+Against+Bear+Runs">Safaricom: Value Investing Against Bear Runs</a>
+<small class=date>23 Mar 2017</small>
+<div>If you bought Safaricom shares 5 years ago, you have made a return of close to 600%. Even in the face of competition and split recommendations due to alleged dominance, the company has continued to outperform and is currently by market capitalization, bigger than the combination of all Kenyan banks plus EABL!</div>
+</div>
+</div>
+<p><b><a href="/research/">Read More &hellip;</a></b></p>
+</div>
+<div id=hpTopTabs>
+<div class=mTabs>
+<ul>
+<li id=hpSplashTab1><a href="#" onclick="return hpSplashTab(1)"><b><b><b>About</b></b></b></a></li>
+<li id=hpSplashTab2><a href="#" onclick="return hpSplashTab(2)"><b><b><b>Features</b></b></b></a></li>
+<li id=hpSplashTab3><a href="#" onclick="return hpSplashTab(3)"><b><b><b>Pricing</b></b></b></a></li>
+<li id=hpSplashTab4><a href="#" onclick="return hpSplashTab(4)"><b><b><b>About Synergy Systems</b></b></b></a></li>
+</ul>
+</div>
+<a name=show></a>
+<div class=hpSplashContent>
+<div id=hpSplash1>
+<h2>Professional investment tools custom tailored for you</h2>
+<p>Market data is the basis of any investment decision. Accurate and timely data is more valuable for the investor. Modern-day investors need more
+information than ever to make key investment decisions. Systems must respond rapidly with a flexible and robust infrastructure.</p>
+<p><b>myStocks</b> provides professionally compiled real-time price quotes and level 2 market depth data services for the <a rel=nofollow href="https://www.nse.co.ke" target=_blank>Nairobi Securities Exchange</a>.
+Our revolutionary real-time data analysis platform, never before seen in the Kenyan financial market, comprises pre-trade analysis, post-trade decision
+support, historical data analysis, market fundamentals and aggregated breaking news streams</p>
+</div>
+<div id=hpSplash2 style=display:none>
+<h2>Strategic decision support tools</h2>
+<p>We have assembled a robust set of tools modeled to facilitate <u>more informed decisions, faster</u>. Features include:
+<span>&bull;</span> 30+ technical analysis indicators
+<span>&bull;</span> Comparison of up to four counters including <abbr title="Nairobi Securities Exchange">NSE</abbr>'s <a href="/stock=^N20I" title="Nairobi Securities Exchange 20-share index">20-share</a> and <a href="/stock=^NASI" title="Nairobi Securities Exchange All share index">All-share</a> indices
+<span>&bull;</span> State-of art charting system with Line, OHLC and candlestick charts
+<span>&bull;</span> Unparallelled corporate actions / price visualization
+<span>&bull;</span> Implicit historic price normalization for bonuses and splits
+<span>&bull;</span> Full market price board, customizable to show select securities
+<p>Our product better equips fund managers, professional traders and savvy investors for success with a combination of radically
+simplified usability and unparalleled functionality offered at an unbeatable price.
+</div>
+<div id=hpSplash3 style=display:none>
+<h2>Humble requirements, robust delivery</h2>
+<p>Our product runs uniformly whether on modest hardware or the most potent system. Its lean bandwidth footprint ensures a cost effective solution. For corporates, myStocks can be deployed as a managed
+proxy on your Intranet, giving cost effective access to the wider branch network.</p>
+<a name=pricing></a>
+<table id=priceTbl class=tblHoverHi border=0 cellspacing=0 cellpadding=0 style="margin:0;width:100%">
+<tr class=row>
+<th colspan=6>
+<select id=payment_currency style=vertical-align:middle onchange="doSetCurrency(0)">
+<option id=cEUR value=EUR>EUR &#8212; Euro<option id=cGBP value=GBP>GBP &#8212; British Pound<option id=cKES value=KES selected>KES &#8212; Kenyan Shilling<option id=cUSD value=USD>USD &#8212; US Dollar </select>
+<img id=priceLoad src="//cdn-ke.mystocks.co.ke/img/ld2.gif" width=16 height=11 alt=Loading... style="display:none;vertical-align:middle">
+<tr class=row>
+<th class=nm>Subscription
+<th class=n>Daily
+<th class=n>Monthly
+<th class=n>Quarterly
+<th class=n>Biannually
+<th class=n>Annually
+<tr class=row>
+<td class=nm>Standard
+<td class=n>100<td class=n>500<td class=n>1,463<td class=n>2,850<td class=n>5,550<tr class=row>
+<td class=nm>Professional
+<td class=n>100<td class=n>1,000<td class=n>2,925<td class=n>5,700<td class=n>11,100<tr class=row>
+<td class=nm>Corporate
+<td class=n>&nbsp;
+<td class=n>2,000<td class=n>5,850<td class=n>11,400<td class=n>22,200</table></div>
+<div id=hpSplash4 style=display:none>
+<p>Synergy Systems Ltd., a Licensed Data Vendor of the <a rel=nofollow href="https://www.nse.co.ke" target=_blank>Nairobi Securities Exchange</a>, is a
+21-year old multi-disciplinary software technology firm, specializing in provision of superior quality bespoke software and automation systems in a wide
+implementation spectrum. We offer our clients flexible and robust process and work-flow automation software, enabling them to be efficient and
+effectively productive in their core business.
+<p><b style="color:#f60">Quality statement</b>: At Synergy Systems, we are dedicated to providing the most accurate, comprehensive and timely level
+of content on the Nairobi Securities Exchange. This we backup with a relentless and unwavering pursuit to provide a high-quality user experience. Our engineering team continuously works to improve
+our delivery systems.
+</div>
+</div>
+</div>
+<script nonce="3ecd354ec5604257cfa7a61152aa9f16" type="text/javascript">addEventHandler(window,'load',function(){initHomePage("{\"reload\":0,\"stamp\":1746188702,\"track\":32446357,\"time\":\"3:25 PM EAT\",\"update\":0,\"market\":\"closed\",\"g\":{\"n\":[\"Unga Group\",\"Eaagads\",\"Longhorn Publishers\",\"Nairobi Business Ventures\",\"Olympia Capital\"],\"u\":[\"/stock=UNGA\",\"/stock=EGAD\",\"/stock=LKL\",\"/stock=NBV\",\"/stock=OCH\"],\"c\":[\"UNGA\",\"EGAD\",\"LKL\",\"NBV\",\"OCH\"],\"p\":[\"22.40\",\"12.75\",\"2.66\",\"2.00\",\"3.70\"],\"h\":[\"6.67%\",\"6.25%\",\"5.14%\",\"4.17%\",\"3.93%\"]},\"l\":{\"n\":[\"Standard Chartered Bank\",\"NCBA Group\",\"TPS Eastern Africa (Serena)\",\"Kakuzi\",\"Uchumi Supermarket\"],\"u\":[\"/stock=SCBK\",\"/stock=NCBA\",\"/stock=TPSE\",\"/stock=KUKZ\",\"/stock=UCHM\"],\"c\":[\"SCBK\",\"NCBA\",\"TPSE\",\"KUKZ\",\"UCHM\"],\"p\":[\"270.00\",\"49.45\",\"14.00\",\"411.00\",\"0.32\"],\"h\":[\"10.00%\",\"8.43%\",\"6.67%\",\"6.59%\",\"5.88%\"]},\"m\":{\"n\":[\"Kenya Re-Insurance\",\"Kenya Electricity Generating Company\",\"Safaricom\",\"Home Afrika\",\"Kenya Power and Lighting Company\"],\"u\":[\"/stock=KNRE\",\"/stock=KEGN\",\"/stock=SCOM\",\"/stock=HAFR\",\"/stock=KPLC\"],\"c\":[\"KNRE\",\"KEGN\",\"SCOM\",\"HAFR\",\"KPLC\"],\"v\":[\"2.74M\",\"1.47M\",\"988,100\",\"797,000\",\"647,100\"],\"m\":[\"9.07B\",\"32.31B\",\"721.18B\",\"303.94M\",\"12.26B\"]}}",parseInt("1"),parseInt("0"))})</script>
+<div id=bottomPageAd align=center> <script nonce="3ecd354ec5604257cfa7a61152aa9f16" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="text/javascript"></script>
+<ins class=adsbygoogle style="display:inline-block;width:728px;height:90px" data-ad-client=ca-pub-3659683260119316 data-ad-slot=2754357259></ins>
+<script nonce="3ecd354ec5604257cfa7a61152aa9f16" type="text/javascript">(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>&nbsp;
+</div><div id=botLinks><div class=pane><strong>myStocks Exclusive</strong><a href="/rmw.php" title="Real-time equities board">Equities Real-time Market Watch</a><a href="/scorecard.php" title="Price performance scorecard">Price Performance Scorecard</a><a href="/news.php" title="News Headlines">News Headlines</a><a href="/portfolio/" title="myCDS Portfolio"><b>myCDS</b> Portfolio</a><a href="/research/" title="myCDS Portfolio">Market Research</a>NSE Notice Board<br><a href="#" onclick="return registerNewUser(event)" title="Register on myStocks"><b>Register</b> on myStocks</a>&nbsp;<br><strong>Indices</strong><a href="/stock=%255EN10I">NSE 10-Share Index</a><a href="/stock=%255EN20I">NSE 20-Share Index</a><a href="/stock=%255EN25I">NSE 25-Share Index</a><a href="/stock=%255ENASI">NSE All-Share Index</a><a href="/stock=%255ENBDI">NSE Bonds Index</a><a href="/stock=%255EZKEQTK" title="Zamara Kenya Equity Index (KES)">Zamara Kenya Equity Index&hellip;</a><a href="/stock=%255EZKEQTU" title="Zamara Kenya Equity Index (USD)">Zamara Kenya Equity Index&hellip;</a>&nbsp;<br><strong>Agricultural</strong><a href="/stock=EGAD">Eaagads Ltd</a><a href="/stock=KUKZ">Kakuzi Plc</a><a href="/stock=KAPC">Kapchorua Tea Kenya Plc</a><a href="/stock=LIMT">Limuru Tea Plc</a><a href="/stock=SASN">Sasini Plc</a></div><div class=pane><a href="/stock=WTK">Williamson Tea Kenya Plc</a>&nbsp;<br><strong>Automobiles and Accessories</strong><a href="/stock=CGEN">Car and General (K) Ltd</a>&nbsp;<br><strong>Banking</strong><a href="/stock=ABSA">ABSA Bank Kenya Plc</a><a href="/stock=BKG">BK Group Plc</a><a href="/stock=COOP" title="Co-operative Bank of Kenya Ltd">Co-operative Bank of Kenya&hellip;</a><a href="/stock=DTK">Diamond Trust Bank Kenya Ltd</a><a href="/stock=EQTY">Equity Group Holdings Plc</a><a href="/stock=HFCK">HF Group Ltd</a><a href="/stock=HFCK-R">HF Group Ltd (Rights)</a><a href="/stock=IMH">I &amp; M Holdings Plc</a><a href="/stock=KCB">KCB Group Plc</a><a href="/stock=NBK">National Bank of Kenya Ltd</a><a href="/stock=NCBA">NCBA Group Plc</a><a href="/stock=SBIC">Stanbic Holdings Plc</a><a href="/stock=SCBK" title="Standard Chartered Bank Kenya Ltd">Standard Chartered Bank&hellip;</a>&nbsp;<br><strong>Commercial and Services</strong><a href="/stock=DCON">Deacons (East Africa) Plc</a><a href="/stock=EVRD">Eveready East Africa Ltd</a><a href="/stock=XPRS">Express Kenya Plc</a></div><div class=pane><a href="/stock=HBE">Homeboyz Entertainment Plc</a><a href="/stock=KQ">Kenya Airways Plc</a><a href="/stock=LKL">Longhorn Publishers Plc</a><a href="/stock=NBV" title="Nairobi Business Ventures Ltd">Nairobi Business Ventures&hellip;</a><a href="/stock=NMG">Nation Media Group Plc</a><a href="/stock=SMER">Sameer Africa Plc</a><a href="/stock=SGL">Standard Group Plc</a><a href="/stock=TPSE" title="TPS Eastern Africa (Serena) Ltd">TPS Eastern Africa (Serena)&hellip;</a><a href="/stock=UCHM">Uchumi Supermarket Plc</a><a href="/stock=SCAN">WPP ScanGroup Plc</a>&nbsp;<br><strong>Construction and Allied</strong><a href="/stock=ARM">ARM Cement Plc</a><a href="/stock=BAMB">Bamburi Cement Ltd</a><a href="/stock=CRWN">Crown Paints Kenya Plc</a><a href="/stock=CABL">East African Cables Plc</a><a href="/stock=PORT" title="East African Portland Cement Ltd">East African Portland Cement&hellip;</a>&nbsp;<br><strong>Energy and Petroleum</strong><a href="/stock=KENO">KenolKobil Ltd</a><a href="/stock=KEGN" title="Kenya Electricity Generating Company Plc">Kenya Electricity Generating&hellip;</a><a href="/stock=KPLC-P4" title="Kenya Power and Lighting Co. Plc 4% Preferential">Kenya Power and Lighting Co.&hellip;</a><a href="/stock=KPLC-P7" title="Kenya Power and Lighting Co. Plc 7% Preferential">Kenya Power and Lighting Co.&hellip;</a><a href="/stock=KPLC" title="Kenya Power and Lighting Company Plc">Kenya Power and Lighting&hellip;</a></div><div class=pane><a href="/stock=TOTL" title="TotalEnergies Marketing Kenya Plc">TotalEnergies Marketing&hellip;</a><a href="/stock=UMME">Umeme Ltd</a>&nbsp;<br><strong>Insurance</strong><a href="/stock=BRIT">Britam Holdings Plc</a><a href="/stock=CIC">CIC Insurance Group Ltd</a><a href="/stock=JUB">Jubilee Holdings Ltd</a><a href="/stock=KNRE" title="Kenya Re-Insurance Corporation Ltd">Kenya Re-Insurance&hellip;</a><a href="/stock=LBTY">Liberty Kenya Holdings Ltd</a><a href="/stock=SLAM">Sanlam Kenya Plc</a><a href="/stock=SLAM-R">Sanlam Kenya Plc (Rights)</a>&nbsp;<br><strong>Investment</strong><a href="/stock=CTUM" title="Centum Investment Company Plc">Centum Investment Company&hellip;</a><a href="/stock=HAFR">Home Afrika Ltd</a><a href="/stock=KURV">Kurwitu Ventures Ltd</a><a href="/stock=OCH">Olympia Capital Holdings Ltd</a><a href="/stock=TCL">Trans-Century Plc</a><a href="/stock=TCL-R">Trans-Century Plc (Rights)</a>&nbsp;<br><strong>Investment Services</strong><a href="/stock=NSE" title="Nairobi Securities Exchange Plc">Nairobi Securities Exchange&hellip;</a>&nbsp;<br><strong>Manufacturing and Allied</strong></div><div class=pane><a href="/stock=AMAC">Africa Mega Agricorp Plc</a><a href="/stock=BOC">BOC Kenya Plc</a><a href="/stock=BAT" title="British American Tobacco Kenya Plc">British American Tobacco&hellip;</a><a href="/stock=CARB">Carbacid Investments Plc</a><a href="/stock=EABL">East African Breweries Ltd</a><a href="/stock=FTGH" title="Flame Tree Group Holdings Ltd">Flame Tree Group Holdings&hellip;</a><a href="/stock=MSC">Mumias Sugar Company Ltd</a><a href="/stock=UNGA">Unga Group Ltd</a>&nbsp;<br><strong>Telecommunication</strong><a href="/stock=SCOM">Safaricom Plc</a>&nbsp;<br><strong>Real Estate Investment Trusts</strong><a href="/stock=LAPR">Laptrust Imara Income-REIT</a>&nbsp;<br><strong>Exchange Traded Funds</strong><a href="/stock=GLD">ABSA NewGold ETF</a>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br></div></div><div id=botLinks2><div class=bwlogo>&nbsp;</div><a href="/terms.php" title="myStocks Terms of Service">Terms of Service</a>&nbsp;|&nbsp; <a href="/privacy.php" title="myStocks Privacy Policy">Privacy Policy</a>&nbsp;|&nbsp; <a href="/nda.php" title="myCDS Portfolio Non-disclosure Agreement">myCDS Portfolio <abbr title="Non-disclosure Agreement">NDA</abbr></a>&nbsp;|&nbsp; <a href="#" onclick="return sendEmail('')" title="Contact myStocks Team">Contact Us</a>&nbsp;|&nbsp; <a href="/m/" title="myStocks Mobile Edition">Mobile Edition</a></div><div id=ftr></div> </div>
+<div id=navPanes>
+<div id=mnuPortfolioDD style=display:none><a class=mnuSectorPortfolio href="/portfolio/" id=mnuCdsView><b>View Your CDS Accounts</b></a>
+<a class=mnuSectorPortfolio href="/portfolio/apply/manage.php">Manage CDS Accounts</a>
+<a class=mnuSectorPortfolio href="/portfolio/apply/manage.php?link">Link your CDS Account</a>
+<div class=hz></div>
+<a class=mnuSectorPortfolio href="/portfolio/demo/">Take a Tour (Demo Portfolio)</a>
+</div><div id=mnuMarketDD style=display:none><a href="/index.php"><span id=mnuHome>&nbsp;</span>Home</a><div class=hz></div><a id=menuSectorPortfolioLink href="#" class=mnuSector onclick="return false" onmouseover="mnuSectorShow('Portfolio','menuSectorPortfolio',this)"><span id=mnuCds>&nbsp;</span><b style="color:#009140">my</b><b style="color:#1A529E">CDS</b>&nbsp;Portfolio<i style=float:right>&#9658;</i></a><div id=menuSectorPortfolio style=display:none><a class=mnuSectorPortfolio href="/portfolio/"><b>View CDS Account(s)</b></a><a class=mnuSectorPortfolio href="/portfolio/apply/manage.php">Manage CDS Account(s)</a><a class=mnuSectorPortfolio href="/portfolio/apply/manage.php?link">Link your CDS Account</a><div class=hz style=margin:0></div><a class=mnuSectorPortfolio href="/portfolio/demo/">Take a Tour (Demo Portfolio)</a></div><a href="/rmw.php"><span id=mnuRmw>&nbsp;</span>Equities Real-time Market Watch</a><div class=hz></div><a href="/price_list/"><span id=mnuPricelist>&nbsp;</span>Daily Pricelist</a><a href="/scorecard.php"><span id=mnuScore>&nbsp;</span>Price Performance Scorecard</a><a href="/research/"><span id=mnuResearch1>&nbsp;</span>Market Research &amp; Commentary</a><a href="/news.php"><span id=mnuNews>&nbsp;</span>News Headlines</a><div id=mnuNoUser><div class=hz></div><a href="#" onclick="return registerNewUser(event)">Register as New Member</a><a href="/login/">Member Login</a></div></div><div id=mnuIndicesDD style=display:none><a href="/stock=%255EN10I"><span class=mnuIndices>&nbsp;</span>NSE 10-Share Index</a><a href="/stock=%255EN20I"><span class=mnuIndices>&nbsp;</span>NSE 20-Share Index</a><a href="/stock=%255EN25I"><span class=mnuIndices>&nbsp;</span>NSE 25-Share Index</a><a href="/stock=%255ENASI"><span class=mnuIndices>&nbsp;</span>NSE All-Share Index</a><a href="/stock=%255ENBDI"><span class=mnuIndices>&nbsp;</span>NSE Bonds Index</a><a href="/stock=%255EZKEQTK"><span class=mnuIndices>&nbsp;</span>Zamara Kenya Equity Index (KES)</a><a href="/stock=%255EZKEQTU"><span class=mnuIndices>&nbsp;</span>Zamara Kenya Equity Index (USD)</a></div><div id=mnuStocksDD style=display:none> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('AG','menuSectorStocks',this)"><span id=mnuSectorAG>&nbsp;</span>Agricultural</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('AA','menuSectorStocks',this)"><span id=mnuSectorAA>&nbsp;</span>Automobiles and Accessories</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('BK','menuSectorStocks',this)"><span id=mnuSectorBK>&nbsp;</span>Banking</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('CS','menuSectorStocks',this)"><span id=mnuSectorCS>&nbsp;</span>Commercial and Services</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('CA','menuSectorStocks',this)"><span id=mnuSectorCA>&nbsp;</span>Construction and Allied</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('EP','menuSectorStocks',this)"><span id=mnuSectorEP>&nbsp;</span>Energy and Petroleum</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('IS','menuSectorStocks',this)"><span id=mnuSectorIS>&nbsp;</span>Insurance</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('IV','menuSectorStocks',this)"><span id=mnuSectorIV>&nbsp;</span>Investment</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('IN','menuSectorStocks',this)"><span id=mnuSectorIN>&nbsp;</span>Investment Services</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('MA','menuSectorStocks',this)"><span id=mnuSectorMA>&nbsp;</span>Manufacturing and Allied</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('TT','menuSectorStocks',this)"><span id=mnuSectorTT>&nbsp;</span>Telecommunication</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('RE','menuSectorStocks',this)"><span id=mnuSectorRE>&nbsp;</span>Real Estate Investment Trusts</a> <a href='#' class=mnuSector onclick="return false" onmouseover="mnuSectorShow('ET','menuSectorStocks',this)"><span id=mnuSectorET>&nbsp;</span>Exchange Traded Funds</a><div id=menuSectorStocks style=display:none> <a class=mnuSectorBK href="/stock=ABSA">ABSA Bank Kenya Plc</a> <a class=mnuSectorET href="/stock=GLD">ABSA NewGold ETF</a> <a class=mnuSectorMA href="/stock=AMAC">Africa Mega Agricorp Plc</a> <a class=mnuSectorCA href="/stock=ARM">ARM Cement Plc</a> <a class=mnuSectorCA href="/stock=BAMB">Bamburi Cement Ltd</a> <a class=mnuSectorBK href="/stock=BKG">BK Group Plc</a> <a class=mnuSectorMA href="/stock=BOC">BOC Kenya Plc</a> <a class=mnuSectorIS href="/stock=BRIT">Britam Holdings Plc</a> <a class=mnuSectorMA href="/stock=BAT">British American Tobacco Kenya Plc</a> <a class=mnuSectorAA href="/stock=CGEN">Car and General (K) Ltd</a> <a class=mnuSectorMA href="/stock=CARB">Carbacid Investments Plc</a> <a class=mnuSectorIV href="/stock=CTUM">Centum Investment Company Plc</a> <a class=mnuSectorIS href="/stock=CIC">CIC Insurance Group Ltd</a> <a class=mnuSectorBK href="/stock=COOP">Co-operative Bank of Kenya Ltd</a> <a class=mnuSectorCA href="/stock=CRWN">Crown Paints Kenya Plc</a> <a class=mnuSectorCS href="/stock=DCON">Deacons (East Africa) Plc</a> <a class=mnuSectorBK href="/stock=DTK">Diamond Trust Bank Kenya Ltd</a> <a class=mnuSectorAG href="/stock=EGAD">Eaagads Ltd</a> <a class=mnuSectorMA href="/stock=EABL">East African Breweries Ltd</a> <a class=mnuSectorCA href="/stock=CABL">East African Cables Plc</a> <a class=mnuSectorCA href="/stock=PORT">East African Portland Cement Ltd</a> <a class=mnuSectorBK href="/stock=EQTY">Equity Group Holdings Plc</a> <a class=mnuSectorCS href="/stock=EVRD">Eveready East Africa Ltd</a> <a class=mnuSectorCS href="/stock=XPRS">Express Kenya Plc</a> <a class=mnuSectorMA href="/stock=FTGH">Flame Tree Group Holdings Ltd</a> <a class=mnuSectorBK href="/stock=HFCK">HF Group Ltd</a> <a class=mnuSectorBK href="/stock=HFCK-R">HF Group Ltd (Rights)</a> <a class=mnuSectorIV href="/stock=HAFR">Home Afrika Ltd</a> <a class=mnuSectorCS href="/stock=HBE">Homeboyz Entertainment Plc</a> <a class=mnuSectorBK href="/stock=IMH">I &amp; M Holdings Plc</a> <a class=mnuSectorIS href="/stock=JUB">Jubilee Holdings Ltd</a> <a class=mnuSectorAG href="/stock=KUKZ">Kakuzi Plc</a> <a class=mnuSectorAG href="/stock=KAPC">Kapchorua Tea Kenya Plc</a> <a class=mnuSectorBK href="/stock=KCB">KCB Group Plc</a> <a class=mnuSectorEP href="/stock=KENO">KenolKobil Ltd</a> <a class=mnuSectorCS href="/stock=KQ">Kenya Airways Plc</a> <a class=mnuSectorEP href="/stock=KEGN">Kenya Electricity Generating Company Plc</a> <a class=mnuSectorEP href="/stock=KPLC-P4">Kenya Power and Lighting Co. Plc 4% Preferential</a> <a class=mnuSectorEP href="/stock=KPLC-P7">Kenya Power and Lighting Co. Plc 7% Preferential</a> <a class=mnuSectorEP href="/stock=KPLC">Kenya Power and Lighting Company Plc</a> <a class=mnuSectorIS href="/stock=KNRE">Kenya Re-Insurance Corporation Ltd</a> <a class=mnuSectorIV href="/stock=KURV">Kurwitu Ventures Ltd</a> <a class=mnuSectorRE href="/stock=LAPR">Laptrust Imara Income-REIT</a> <a class=mnuSectorIS href="/stock=LBTY">Liberty Kenya Holdings Ltd</a> <a class=mnuSectorAG href="/stock=LIMT">Limuru Tea Plc</a> <a class=mnuSectorCS href="/stock=LKL">Longhorn Publishers Plc</a> <a class=mnuSectorMA href="/stock=MSC">Mumias Sugar Company Ltd</a> <a class=mnuSectorCS href="/stock=NBV">Nairobi Business Ventures Ltd</a> <a class=mnuSectorIN href="/stock=NSE">Nairobi Securities Exchange Plc</a> <a class=mnuSectorCS href="/stock=NMG">Nation Media Group Plc</a> <a class=mnuSectorBK href="/stock=NBK">National Bank of Kenya Ltd</a> <a class=mnuSectorBK href="/stock=NCBA">NCBA Group Plc</a> <a class=mnuSectorIV href="/stock=OCH">Olympia Capital Holdings Ltd</a> <a class=mnuSectorTT href="/stock=SCOM">Safaricom Plc</a> <a class=mnuSectorCS href="/stock=SMER">Sameer Africa Plc</a> <a class=mnuSectorIS href="/stock=SLAM">Sanlam Kenya Plc</a> <a class=mnuSectorIS href="/stock=SLAM-R">Sanlam Kenya Plc (Rights)</a> <a class=mnuSectorAG href="/stock=SASN">Sasini Plc</a> <a class=mnuSectorBK href="/stock=SBIC">Stanbic Holdings Plc</a> <a class=mnuSectorBK href="/stock=SCBK">Standard Chartered Bank Kenya Ltd</a> <a class=mnuSectorCS href="/stock=SGL">Standard Group Plc</a> <a class=mnuSectorEP href="/stock=TOTL">TotalEnergies Marketing Kenya Plc</a> <a class=mnuSectorCS href="/stock=TPSE">TPS Eastern Africa (Serena) Ltd</a> <a class=mnuSectorIV href="/stock=TCL">Trans-Century Plc</a> <a class=mnuSectorIV href="/stock=TCL-R">Trans-Century Plc (Rights)</a> <a class=mnuSectorCS href="/stock=UCHM">Uchumi Supermarket Plc</a> <a class=mnuSectorEP href="/stock=UMME">Umeme Ltd</a> <a class=mnuSectorMA href="/stock=UNGA">Unga Group Ltd</a> <a class=mnuSectorAG href="/stock=WTK">Williamson Tea Kenya Plc</a> <a class=mnuSectorCS href="/stock=SCAN">WPP ScanGroup Plc</a></div></div><div id=mnuResearchDD style=display:none><div class=hz></div><a href="/research/"><span id=mnuResearch2>&nbsp;</span>Market Commentary Archives</a></div><div id=mnuHelpDD style=display:none><a href="/videos.php"><span id=mnuVideo>&nbsp;</span>Video Tutorials</a><div class=hz></div><a href="/profile.php"><span id=mnuAccount>&nbsp;</span>Account &amp; Settings</a><a href="/payment.php">Make Payments...</a><div class=hz></div><a href="/terms.php">Terms of Service</a><a href="/privacy.php">Privacy Policy</a><a href="/nda.php">myCDS Portfolio <abbr title="Non-disclosure Agreement">NDA</abbr></a><a href="#" onclick="return sendEmail('')"><span id=mnuContact>&nbsp;</span>Contact Us...</a><div class=hz></div><a href="#" onclick="return showAbout()">About myStocks...</a></div></div>
+</div>
+<script nonce="3ecd354ec5604257cfa7a61152aa9f16" type="text/javascript">addEventHandler(window,'load',function(){initMenu();loadGoogAsyncScripts(0)})</script>
+</body>
+</html>

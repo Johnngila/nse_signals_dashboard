@@ -7,3 +7,7 @@ yfinance
 requests
 beautifulsoup4
 lxml
+scikit-learn>=1.0.0
+scipy>=1.7.0
+statsmodels>=0.13.0
+arch>=5.0.0
