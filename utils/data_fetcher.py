@@ -235,14 +235,32 @@ def fetch_nse_current_prices(tickers):
         }
         
         print(f"Attempting to fetch stock prices from MyStocks Kenya...")
-        response = requests.get(url, headers=headers, timeout=20)
-        response.raise_for_status()
+        
+        # Use a session to maintain cookies across requests
+        session = requests.Session()
+        
+        # Add a retry mechanism
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                response = session.get(url, headers=headers, timeout=20)
+                response.raise_for_status()
+                break
+            except (requests.RequestException, Exception) as e:
+                if attempt < max_retries - 1:
+                    print(f"Retry {attempt+1}/{max_retries} failed: {e}")
+                    time.sleep(2)  # Wait before retrying
+                else:
+                    print(f"All retries failed: {e}")
+                    raise
         
         # Parse HTML
         soup = BeautifulSoup(response.text, 'lxml')
         
         # Save the HTML for debugging
-        debug_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'mystocks_debug.txt')
+        debug_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
+        os.makedirs(debug_dir, exist_ok=True)
+        debug_file = os.path.join(debug_dir, 'mystocks_debug.txt')
         with open(debug_file, 'w', encoding='utf-8') as f:
             f.write(response.text)
         print(f"Saved MyStocks HTML for debugging to {debug_file}")

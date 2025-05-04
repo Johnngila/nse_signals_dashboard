@@ -36,13 +36,12 @@ Construction and Allied,BAMB,Bamburi Cement Ltd
 Construction and Allied,CRWN,Crown Paints Kenya Plc
 Construction and Allied,CABL,East African Cables Plc
 Construction and Allied,PORT,East African Portland Cement Ltd
-Construction and Allied,Energy and Petroleum,
-Construction and Allied,KEGN,Kenya Electricity Generating Company Plc
-Construction and Allied,KPLC-P4,KPLC-P4
-Construction and Allied,KPLC-P7,KPLC-P7
-Construction and Allied,KPLC,Kenya Power and Lighting Company Plc
-Construction and Allied,TOTL,TotalEnergies Marketing Kenya Plc
-Construction and Allied,UMME,Umeme Ltd
+Energy and Petroleum,KEGN,Kenya Electricity Generating Company Plc
+Energy and Petroleum,KPLC-P4,KPLC Preference Shares 4%
+Energy and Petroleum,KPLC-P7,KPLC Preference Shares 7%
+Energy and Petroleum,KPLC,Kenya Power and Lighting Company Plc
+Energy and Petroleum,TOTL,TotalEnergies Marketing Kenya Plc
+Energy and Petroleum,UMME,Umeme Ltd
 Insurance,BRIT,Britam Holdings Plc
 Insurance,CIC,CIC Insurance Group Ltd
 Insurance,JUB,Jubilee Holdings Ltd
@@ -64,13 +63,11 @@ Manufacturing and Allied,ORCH,Kenya Orchards Ltd
 Manufacturing and Allied,MSC,Mumias Sugar Company Ltd
 Manufacturing and Allied,UNGA,Unga Group Ltd
 Telecommunication,SCOM,Safaricom Plc
-Telecommunication,Real Estate Investment Trusts,
-Telecommunication,LAPR,Laptrust Imara Income-REIT
-Telecommunication,Exchange Traded Funds,
-Telecommunication,GLD,ABSA NewGold ETF
-Indices,^N10I,NSE 10-Share Index
-Indices,^N20I,NSE 20-Share Index
-Indices,^N25I,NSE 25-Share Index
-Indices,^NASI,NSE All-Share Index
-Indices,^ZKEQTK,Zamara Kenya Equity Index (KES)
-Indices,^ZKEQTU,Zamara Kenya Equity Index (USD)
+Real Estate Investment Trust,LAPR,Laptrust Imara Income-REIT
+Exchange Traded Fund,GLD,ABSA NewGold ETF
+Index,^N10I,NSE 10-Share Index
+Index,^N20I,NSE 20-Share Index
+Index,^N25I,NSE 25-Share Index
+Index,^NASI,NSE All-Share Index
+Index,^ZKEQTK,Zamara Kenya Equity Index (KES)
+Index,^ZKEQTU,Zamara Kenya Equity Index (USD)
