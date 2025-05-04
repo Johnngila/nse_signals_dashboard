@@ -161,13 +161,11 @@ def fetch_nse_data(tickers=None, period="1mo"):
         for ticker in all_data:
             print(f"Ticker {ticker} has {len(all_data[ticker])} data points")
         
-        # If we have no data points at all, fallback to mock data
+        # If we have no data points at all, return empty DataFrame instead of mock data
         all_empty = all(len(all_data.get(ticker, {})) == 0 for ticker in tickers)
         if all_empty:
-            print("WARNING: No data available from NSE or cache. Falling back to mock data.")
-            mock_data = generate_mock_data(tickers)
-            print(f"Generated mock data with shape: {mock_data.shape}")
-            return mock_data
+            print("WARNING: No data available from NSE or cache.")
+            return pd.DataFrame()  # Return empty DataFrame instead of mock data
         
         # Save updated data to cache
         cache = {
@@ -201,11 +199,9 @@ def fetch_nse_data(tickers=None, period="1mo"):
             except Exception as cache_error:
                 print(f"Error loading cache: {cache_error}")
         
-        # If all else fails, return mock data
-        print("All attempts failed, falling back to mock data")
-        mock_data = generate_mock_data(tickers)
-        print(f"Generated mock data with shape: {mock_data.shape}")
-        return mock_data
+        # Return empty DataFrame instead of mock data
+        print("All attempts failed, no data available")
+        return pd.DataFrame()
 
 def fetch_nse_current_prices(tickers):
     """Fetch current stock prices from NSE Kenya website"""

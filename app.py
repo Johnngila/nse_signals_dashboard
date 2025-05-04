@@ -178,6 +178,11 @@ page = st.sidebar.radio("Navigation", ["Dashboard", "Signals", "Analysis", "Trad
 # Function to load data
 @st.cache_data(ttl=3600)  # Cache for 1 hour
 def load_data(source, period_code, tickers):
+    # Show error if no stocks are selected
+    if not tickers:
+        st.error("Please select at least one stock to display")
+        return None
+    
     if source == "mock":
         # For mock data, determine number of days based on period
         days_map = {"1d": 1, "1w": 7, "1mo": 30, "3mo": 90, "6mo": 180, "1y": 365}
@@ -189,21 +194,14 @@ def load_data(source, period_code, tickers):
             # Try to fetch data from the specified source
             df = fetch_stock_data(tickers=tickers, period=period_code, source=source)
             
-            # If the dataframe is empty, fall back to mock data
+            # If the dataframe is empty, show clear error instead of using mock data
             if df is None or df.empty:
-                st.warning("Could not retrieve real data - showing mock data instead")
-                from utils.data_fetcher import generate_mock_data
-                days_map = {"1d": 1, "1w": 7, "1mo": 30, "3mo": 90, "6mo": 180, "1y": 365}
-                days = days_map.get(period_code, 30)
-                return generate_mock_data(tickers, days)
+                st.error("Could not retrieve real price data from NSE. Please try again later or check your internet connection.")
+                return None
             return df
         except Exception as e:
             st.error(f"Error loading data: {str(e)}")
-            # Always fall back to mock data on any error
-            from utils.data_fetcher import generate_mock_data
-            days_map = {"1d": 1, "1w": 7, "1mo": 30, "3mo": 90, "6mo": 180, "1y": 365}
-            days = days_map.get(period_code, 30)
-            return generate_mock_data(tickers, days)
+            return None
 
 # Main content
 st.title("NSE Signals Dashboard")
